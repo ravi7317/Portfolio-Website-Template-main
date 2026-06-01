@@ -7,20 +7,20 @@
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/icomoon.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 
 
@@ -109,6 +109,122 @@
   transform: scale(1.1);
 }
 
+/* Custom Profile Image Styling in About Section */
+.about-avatar-container {
+  position: relative;
+  width: 100%;
+  max-width: 170px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 2rem auto;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #ffbd39, #ff5722, #e91e63, #ffbd39);
+  background-size: 300% 300%;
+  animation: borderGlowGradient 8s ease infinite;
+  box-shadow: 0 10px 25px rgba(255, 189, 57, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-avatar-container:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(255, 189, 57, 0.35);
+}
+
+.about-avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #000000; /* Blends with background */
+  transition: transform 0.5s ease;
+}
+
+.about-avatar-container:hover img {
+  transform: scale(1.03);
+}
+
+/* Pulsing Status Badge */
+.status-badge {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background: #111111;
+  border: 1.5px solid #ffbd39;
+  padding: 4px 10px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+.status-text {
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@keyframes borderGlowGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes statusPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Hero Section Profile Image Enhancement */
+.one-third.img {
+  background-position: center top !important;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.one-third.img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #000000 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0) 70%),
+              linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0) 25%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 991.98px) {
+  .one-third.img::before {
+    background: rgba(0, 0, 0, 0.5); /* darker overlay on mobile to maintain readability */
+  }
+}
+
 
 </style>
 
@@ -141,7 +257,7 @@
 	      	<div class="overlay"></div>
 	         <div class="container">
 	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/ravi.png);">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(assets/images/ravi_professional.jpg);">
 	          	 <div class="overlay"></div>
 	          	</div>
 		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
@@ -152,48 +268,12 @@
 						<!-- Element to contain animated typing -->
 						<span id="typing-animation"></span>
 
-						<script>
-
-						// Initialize the typing animation
-						const typingAnimationElement = document.getElementById('typing-animation');
-
-						// Create an array of typing text
-						const typingTexts = [
-						'Sortware Engineer  ',
-						'Learner',
-						'Data Engineer   ',
-						];
-
-						// Create a function to display the typing animation for a given text
-						function playTypingAnimation(text) {
-						// Loop through each character and add it to the element
-						for (let i = 0; i < text.length; i++) {
-							setTimeout(() => {
-							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
-						}
-
-						// Once the animation is complete, reset the text and start over
-						setTimeout(() => {
-							typingAnimationElement.textContent = '';
-							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
-						}
-
-						// Start the typing animation loop
-						playTypingAnimation(typingTexts[0]);
-
-						</script>
-
 						<br>
 						<br>
-			            <h2>Software engineer passionate about innovation and collaboration. Let's build something great!
-
-						</h2>
+			            <h2>Full-Stack Software Engineer passionate about real-time telemetry, AI applications, and high-performance backends. Let's build something great!</h2>
 						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
 						<!-- <br> -->
-			            <p><a href="https://www.youtube.com/" class="btn btn-primary py-3 px-4">YouTube</a> 
-							<a href="https://github.com/ravi7317" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+			            <p><a href="https://github.com/ravi7317" target="_blank" class="btn btn-primary py-3 px-4">My works</a></p>
 		            </div>
 		          </div>
 	        	</div>
@@ -212,52 +292,62 @@
 					<div class="col-md-6 col-lg-5 d-flex">
 						<div class="img-about img d-flex align-items-stretch">
 							<div class="overlay">
-								<div class="row">
+								<div class="row align-items-center">
 									<div class="col-sm-6 col-md-5">
-									  <div class="about-img">
-										<img src="images/Screenshot 2024-04-05 190106.png " class="img-fluid rounded b-shadow-a" alt="">
+									  <div class="about-avatar-container">
+										<img src="assets/images/ravi_professional.jpg" alt="Ravi Verma Profile">
+										<div class="status-badge">
+										  <span class="status-dot"></span>
+										  <span class="status-text">Available</span>
+										</div>
 									  </div>
 									</div>
 									<!-- Details next to profile image -->
 									<div class="col-sm-6 col-md-7">
 									  <div class="about-info">
 										<p><span class="title-s">Name: </span> <span>Ravi Verma</span></p>
-										<p><span class="title-s">Power Skill: </span> <span>Problem-solving</span></p>
-										<p><span class="title-s">Acadmic Score </span> <span>7.50 CGPA</span></p>
-										<p><span class="title-s">Address: </span> <span>Uttar pradesh, India</span></p>
+										<p><span class="title-s">Power Skill: </span> <span>Full-Stack Development</span></p>
+										<p><span class="title-s">Academic Score </span> <span>7.90 CGPA</span></p>
+										<p><span class="title-s">Address: </span> <span>Noida, UP, India</span></p>
 									  </div>
 									</div>
 								  </div>
 
 								<div class="skill-mf">
 									<p class="title-s">Skills</p>
-									<span>SQL</span> <span class="pull-right">95%</span>
+									<span>React.js &amp; Electron.js</span> <span class="pull-right">90%</span>
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
+										<div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 									
-									<span>PYTHON</span> <span class="pull-right">85%</span>
+									<span>Python &amp; FastAPI</span> <span class="pull-right">85%</span>
 									<div class="progress">
 										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 									
-									<span>Data Visualization</span> <span class="pull-right">90%</span>
+									<span>Java, Spring Boot &amp; Hibernate</span> <span class="pull-right">80%</span>
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 									
-									<span>C++</span> <span class="pull-right">85%</span>
+									<span>PostgreSQL, Redis &amp; MySQL</span> <span class="pull-right">80%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>Docker, Git &amp; CI/CD</span> <span class="pull-right">85%</span>
 									<div class="progress">
 										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 									
-									<span>DSA</span> <span class="pull-right">70%</span>
+									<span>DSA &amp; Problem-solving</span> <span class="pull-right">75%</span>
 									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+										<div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 								</div>
@@ -272,18 +362,17 @@
 								<h1 class="big">About</h1>
 								<h2 class="mb-4">About Me</h2>
 								
-								<p>Hey there! I'm Ravi Verma, a passionate software engineer dedicated to crafting impactful digital solutions. With a strong foundation in computer science and a knack for problem-solving, I specialize in building user-friendly applications across various platforms.
-									Driven by collaboration and continuous learning, I thrive in dynamic environments where I can innovate and grow. Beyond coding, I advocate for diversity and inclusion in the tech industry.
-									Let's create something amazing together!
+								<p>Hey there! I'm Ravi Verma, a Full-Stack Software Engineer with experience engineering high-performance real-time telemetry dashboards, AI platforms, and backends. I specialize in building user-friendly frontend experiences and low-latency, scalable microservices.
+									I'm passionate about continuous learning, performance optimization, and solving complex problems. Let's create something amazing together!
 								  </p>
 								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>Data Science &amp; Analytics</span></li>
-									<li class="d-flex"><span>Domain:</span> <span>Data Science, Ecommerce&amp; Digital Marketing</span></li>
-									<li class="d-flex"><span>Education:</span> <span>Bachelor of Engineering</span></li>
+									<li class="d-flex"><span>Profile:</span> <span>Full-Stack Software Engineering</span></li>
+									<li class="d-flex"><span>Domain:</span> <span>Real-time Telemetry, AI Platforms &amp; E-Commerce Storefronts</span></li>
+									<li class="d-flex"><span>Education:</span> <span>B.Tech in Computer Science &amp; Engineering (Data Science)</span></li>
 									<li class="d-flex"><span>Language:</span> <span>English, Hindi</span></li>
-									<li class="d-flex"><span>BI Tools:</span> <span>Microsoft Power BI, Looker &amp; Tableau</span></li>
-									<li class="d-flex"><span>Other Skills:</span> <span>C++, DSA, Excel, Git, JAVA, Google Analytics &amp; SEO</span></li>
-									<li class="d-flex"><span>Interest:</span> <span>Traveling, Travel Photography, Problem-solving</span></li>
+									<li class="d-flex"><span>Frameworks:</span> <span>React.js, Node.js, Express.js, Spring Boot, FastAPI, Electron.js, Streamlit, Spring MVC, Spring Data JPA</span></li>
+									<li class="d-flex"><span>Other Skills:</span> <span>Java, Python, C++, SQL, Hibernate, JDBC, REST &amp; WebSocket APIs, Docker, Git, GitHub Actions, Kafka, Supabase, Redis, PostgreSQL, MySQL, Excel, Power BI, Recharts</span></li>
+									<li class="d-flex"><span>Interest:</span> <span>Data Structures &amp; Algorithms, Real-time IoT Telemetry, Multimodal AI, Live Streaming</span></li>
 									
 								</ul>
 							</div>
@@ -293,7 +382,7 @@
 						<div class="counter-wrap ftco-animate d-flex mt-md-3">
 							<div class="text">
 								<p class="mb-4">
-									<span class="number" data-number="5">0</span> <span>+</span>
+									<span class="number" data-number="18">0</span> <span>+</span>
 									<span>&nbsp; Projects completed</span>
 								</p>
 								<p><a href="https://www.linkedin.com/in/theraviverma/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
@@ -314,48 +403,63 @@
           <div class="col-md-10 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Resume</h1>
             <h2 class="mb-4">Resume</h2>
-            <p> Passionate software engineer dedicated to innovation and collaboration. Thriving in dynamic environments, I bring creativity and expertise to every project. Proven expertise in data science, Web Deveplopment, machine learning algorithms and project management.</p>
+            <p>Passionate software engineer dedicated to building high-performance scalable systems, real-time dashboards, and AI solutions. Thriving in dynamic environments, I bring robust software design and development expertise to every project.</p>
           </div>
         </div>
 
 		<div class="row">
-			<h1 class="big-4">Summer Training</h1>
+			<h1 class="big-4">Work Experience</h1>
 			<div class="underline"></div>
 		</div>
 		<br>
 		
-		<div class="row">
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">Mar-2024</span><span>-&nbsp;</span><span class="date">Present</span>
-						<h2>Summer Training IN C++</h2>
-						<span class="position">Udemy</span>
-						<p class="mt-4">Udemy is an online learning platform that offers courses on a wide variety of topics. 
+		<div class="row d-flex">
+				<div class="col-md-4 d-flex">
+					<div class="resume-wrap ftco-animate" style="width: 100%;">
+						<span class="date">Mar 2026 - Present</span>
+						<h2>Frontend Developer Intern</h2>
+						<span class="position">Nanovistar Private Limited (Noida, UP)</span>
+						<p class="mt-4">
 							<ul>
-								<li>Achieve mastery in C++ with a strong grasp of syntax, data types, functions, classes, and inheritance. Develop skills to write clean, efficient, and object-oriented code, laying a solid foundation for software development.</li>
-								<li>Master essential data structures (arrays, linked lists, stacks, queues, trees, graphs) and algorithms (searching, sorting, recursion, dynamic programming) in C++. Analyze complexities and apply them efficiently to solve real-world programming challenges.</li>
-								<li>Gain hands-on experience implementing data structures and algorithms in C++, honing skills in designing efficient algorithms and solving coding problems. This prepares you for software development roles requiring proficiency in C++ and DSA.</li>
+								<li>Developed responsive IoT-based dashboards using React.js, HTML5, CSS3, and JavaScript.</li>
+								<li>Built UI components for real-time IoT data visualization (charts, metrics, device status monitoring).</li>
+								<li>Integrated React frontend components with REST and WebSocket APIs to display live sensor telemetry.</li>
+								<li>Optimized dashboard performance and layouts to ensure smooth real-time rendering.</li>
+								<li>Debugged UI rendering and data-binding issues for reliable data display.</li>
 							</ul>
 						</p>
 					</div>
-
 				</div>
 
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">Jun-2023</span><span>&nbsp;</span><span class="date">Jul-2023</span>
-						<h2>Summer Training IN JAVA</h2>
-						<span class="position">Cipher School</span>
-						<p class="mt-4">An online education platform that provides different Programs across formal and informal education. 
+				<div class="col-md-4 d-flex">
+					<div class="resume-wrap ftco-animate" style="width: 100%;">
+						<span class="date">Oct 2025 - Feb 2026</span>
+						<h2>Full Stack Developer Trainee</h2>
+						<span class="position">Revature (Remote)</span>
+						<p class="mt-4">
 							<ul>
-								<li>Gain a strong grasp of Java programming, covering syntax, data types, control structures, and object-oriented principles. Develop skills to write clean, efficient, and maintainable code, laying a solid foundation for software development.</li>
-								<li>Master essential data structures (arrays, linked lists, stacks, queues, trees, graphs) and algorithms (searching, sorting, recursion, dynamic programming). Learn to analyze complexities and apply them efficiently to solve real-world programming challenges.
-								</li>
-								<li>Apply Java and DSA knowledge to real projects, designing efficient algorithms and solving coding problems. Gain hands-on experience with Java frameworks, building scalable software solutions for success in development roles.</li>
+								<li>Strengthened foundational backend skills in Java, SQL, Spring Boot, Git, and RESTful API development.</li>
+								<li>Designed secure REST APIs using Spring Data JPA, Spring MVC, and Hibernate for robust data persistence.</li>
+								<li>Developed relational database schemas, executing complex SQL queries, transaction controls, and optimizations.</li>
+								<li>Practiced automated testing, version control with Git, and collaborated in daily Agile/Scrum standups.</li>
 							</ul>
 						</p>
 					</div>
+				</div>
 
+				<div class="col-md-4 d-flex">
+					<div class="resume-wrap ftco-animate" style="width: 100%;">
+						<span class="date">Oct 2024 - Jun 2025</span>
+						<h2>Frontend Developer Trainee Internship</h2>
+						<span class="position">Cipher-School (Remote)</span>
+						<p class="mt-4">
+							<ul>
+								<li>Constructed a React-based task management application featuring task CRUD operations, status filtering, and localStorage state persistence.</li>
+								<li>Created reusable React components and UI libraries, reducing frontend development time by 30%.</li>
+								<li>Collaborated in Agile/Scrum workflows, handling Git version control and 25+ pull request reviews.</li>
+							</ul>
+						</p>
+					</div>
 				</div>
 			</div>
 
@@ -371,32 +475,117 @@
 			<div class="row">
     			<div class="col-md-6">
     				<div class="resume-wrap ftco-animate">
-    					<span class="date">2021-Present</span>
-    					<h2>Bachelor of Engineering</h2>
+    					<span class="date">Aug 2021 - Jul 2025</span>
+    					<h2>B.Tech in Computer Science &amp; Engineering (Data Science)</h2>
     					<span class="position">Lovely Professional University (LPU)</span>
-    					<p class="mt-4">Domain: Data Science</p>
+    					<p class="mt-4">CGPA: 7.90 / 10.0</p>
     				</div>
     			</div>
 
     			<div class="col-md-6">
     				<div class="resume-wrap ftco-animate">
-    					<span class="date">2019-2020</span>
+    					<span class="date">2019 - 2020</span>
     					<h2>Higher Secondary School</h2>
     					<span class="position">Disha Delphi Global Public School</span>
-    					<p class="mt-4">Grade: First class distinction.</p>
+    					<p class="mt-4">Grade: 66% (First Class)</p>
     				</div>
 				</div>
     		</div>
 
+		<br>
+		<br>
+
+		<div class="row">
+			<h1 class="big-4">Coursework &amp; Learning Repositories</h1>
+			<div class="underline"></div>
+		</div>
+		<br>
+		
+		<div class="row d-flex">
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>Frontend Development Course</h2>
+					<span class="position"><a href="https://github.com/ravi7317/Frontend-Development-Course" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">In-depth study and hands-on repository of fundamental web technologies including HTML5, CSS3, and JavaScript ES6+.</p>
+				</div>
+			</div>
+
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>JavaScript A to Z</h2>
+					<span class="position"><a href="https://github.com/ravi7317/Java-Script-A-to-Z" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Advanced JavaScript training repository covering prototype inheritance, async programming, AJAX, JSON, and DOM APIs.</p>
+				</div>
+			</div>
+
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>React.js Complete Course</h2>
+					<span class="position"><a href="https://github.com/ravi7317/React_FullCourse" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Comprehensive study of React.js including Hooks, State Management (Redux/Context), React Router, and component lifecycle.</p>
+				</div>
+			</div>
+
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>Backend Engineering &amp; Node.js</h2>
+					<span class="position"><a href="https://github.com/ravi7317/Backend-Learning" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Full backend development syllabus covering Node.js, Express, Middleware development, REST API design, and authentication models.</p>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row d-flex">
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>Core Java Complete Learning</h2>
+					<span class="position"><a href="https://github.com/ravi7317/LEARN_JAVA" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Complete Java OOP programming modules, Exception Handling, Collections Framework, Input/Output, and Concurrency.</p>
+				</div>
+			</div>
+
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>JDBC &amp; Database Engineering</h2>
+					<span class="position"><a href="https://github.com/ravi7317/JDBC-SQL" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Relational databases, SQL queries, DDL/DML scripts, and Java Database Connectivity (JDBC) setup and transaction control.</p>
+				</div>
+			</div>
+
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>Data Structures &amp; Algorithms</h2>
+					<span class="position"><a href="https://github.com/ravi7317/Data-Structure" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Repository containing data structures implementation (Arrays, Lists, Stacks, Trees) and algorithmic problem solving in C++.</p>
+				</div>
+			</div>
+
+			<div class="col-md-3 d-flex">
+				<div class="resume-wrap ftco-animate" style="width: 100%;">
+					<span class="date">Coursework &amp; Practice</span>
+					<h2>Machine Coding &amp; System Design</h2>
+					<span class="position"><a href="https://github.com/ravi7317/Machine-Coding" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Hands-on practice repository solving real-world machine coding rounds, focusing on separation of concerns and clean architectural patterns.</p>
+				</div>
+			</div>
+		</div>
+
     		<div class="row justify-content-center mt-5">
     			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="https://drive.google.com/file/d/1Mwp7jVXJ1uSDWBOKJ2uhz5dzGjxA6vRW/view?usp=sharing""#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+    				<p><a href="https://drive.google.com/file/d/1Yv3GhLg3StijMmZciMRYKCDp3ayBmGk9/view?usp=drive_link" target="_blank" class="btn btn-primary py-4 px-5">Download CV</a></p>
     			</div>
     		</div>
     	</div>
     </section>
-
-   
 
     <section class="ftco-section" id="project-section">
       <div class="container">
@@ -404,71 +593,242 @@
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h1 class="big big-2">Projects</h1>
             <h2 class="mb-4">Projects</h2>
-            <p>Below are the sample Data Analytics projects on SQL, Python, Power BI & ML.</p>
+            <p>Below is a collection of my software development projects, grouped by complexity.</p>
           </div>
         </div>
+        
         <div class="row d-flex">
+          <!-- Card 1: Aether AI -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317" class="block-20 zoom-effect" style="background-image: url('images/proj_1.jpg');">
+              <a href="https://aether-ai-rosy.vercel.app/" target="_blank" class="block-20 zoom-effect" style="background-image: url('assets/images/aether_mockup.png');">
               </a>
               <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/ravi7317">Digital Music Store Data Analysis using SQL</a></h3>
-                <p>Analyzed music store data using advanced SQL queires to identify gaps and increase the business growth.</p>
+                <h3 class="heading"><a href="https://aether-ai-rosy.vercel.app/" target="_blank">Aether AI — AI-Powered Chat Platform</a></h3>
+                <p>Full-stack AI chat platform featuring real-time LLM response streaming (SSE), voice input (Whisper), Supabase/PostgreSQL session storage, and Redis caching. Deployed with CI/CD on Vercel and Render.</p>
+                <p>
+                  <a href="https://aether-ai-rosy.vercel.app/" target="_blank" class="btn btn-primary py-2 px-3 mt-2" style="font-size: 11px; font-weight: 500; letter-spacing: 1px;">Live Link 🔗</a>
+                  <a href="#" class="btn btn-white btn-outline-white py-2 px-3 mt-2" data-toggle="modal" data-target="#aetherDemoModal" style="font-size: 11px; font-weight: 500; letter-spacing: 1px; margin-left: 5px;">Watch Demo 🎥</a>
+                </p>
               </div>
             </div>
           </div>
+          <!-- Card 2: E-Commerce Storefront -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpg');">
+              <a href="https://github.com/ravi7317" class="block-20 zoom-effect" style="background-image: url('assets/images/ecom_mockup.png');">
               </a>
               <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/ravi7317">Data Analysis using Python Project for Beginners</a></h3>
-                <p>Performed exploratory data analysis on diwali sales data using Python to improve the customer experience.</p>
+                <h3 class="heading"><a href="https://github.com/ravi7317">E-Commerce Storefront</a></h3>
+                <p>A responsive e-commerce storefront utilizing category-based filtering from the FakeStore API. Implemented debounced search, category filtering, and localStorage cart persistence to optimize API calls.</p>
               </div>
             </div>
           </div>
+          <!-- Card 3: Movie Recommender -->
           <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://github.com/ravi7317/Coffee-Shop-Sales-Dashboard" class="block-20 zoom-effect" style="background-image: url('images/Screenshot 2024-02-25 113159.png');">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Movie-Recommendation-System" class="block-20 zoom-effect" style="background-image: url('https://raw.githubusercontent.com/2000pawan/Content_Based_Movie_Recommendation_System/main/img.jpg');">
               </a>
               <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/ravi7317/Coffee-Shop-Sales-Dashboard">Power BI Sales dashboard Project for Beginners</a></h3>
-                <p>Designed a power bi dashboard for Coffee-Shop-Sales to track and analyze the online sales data acorss India.</p>
+                <h3 class="heading"><a href="https://github.com/ravi7317/Movie-Recommendation-System">Movie Recommender System</a></h3>
+                <p>A content-based movie recommendation system built with Python, Streamlit, and Scikit-Learn. Computes cosine similarity of vectorized metadata tags (genres, cast, crew) to suggest movies via a dynamic UI.</p>
               </div>
             </div>
           </div>
         </div>
-	<br>
-		<!-- added justify-content-center to center align the last two projects -->
-		<div class="row d-flex justify-content-center">  
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/ravi7317" class="block-20 zoom-effect" style="background-image: url('images/proj_4.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/ravi7317">Sales Forecast- Time Series Forecasting</a></h3>
-				  <p>Used multiple machine learning models to forecast sales (retail store) and performed time series analysis.</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/ravi7317" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/ravi7317">Customer Segmentation using clustering model</a></h3>
-				  <p>Developed a ML model to give various recommendations of financial products &amp; services on target customer groups.</p>
-				</div>
-			  </div>
-			</div>
-		 </div>
-	  </div>
+        <br>
+        <div class="row d-flex">
+          <!-- Card 4: Bangalore House -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Bangalore-House-Price-Prediction" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Bangalore-House-Price-Prediction">Bangalore House Price Prediction</a></h3>
+                <p>A supervised machine learning model that predicts housing prices in Bangalore. Built using Python (Scikit-Learn, Pandas, Numpy) for analysis, and deployed via a Flask web application with a responsive HTML/CSS/JS frontend.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 5: RecipeHub -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/ravi7317-PEP-VS-RecipeProject-Part1" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/ravi7317-PEP-VS-RecipeProject-Part1">RecipeHub (Back-End)</a></h3>
+                <p>A Java-based REST API backend designed to manage recipes, chefs, and ingredients using OOP and JDBC. Implements pagination, layered architecture (Controller, Service, DAO), and role-based access control.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 6: Spring Social Media -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/ravi7317-PEP-SpringSocialMediaBlogAPI-Project" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/ravi7317-PEP-SpringSocialMediaBlogAPI-Project">Spring Social Media Blog API</a></h3>
+                <p>A Java-based REST API backend for a micro-blogging app leveraging Spring Boot, Spring MVC, and Spring Data JPA. Manages user registration, secure login, message CRUD operations, and message feed retrieval.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row d-flex">
+          <!-- Card 7: React Real-Time Dashboard -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/React-RealTime_Dashboard" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/React-RealTime_Dashboard">React Real-Time Dashboard</a></h3>
+                <p>A high-performance React dashboard presenting real-time telemetry metrics using WebSockets, dynamic charts, and visual monitoring alerts for remote device state feedback.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 8: Pizza Sales -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Pizza-Sales-Dashboard-" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Pizza-Sales-Dashboard-">Pizza Sales Dashboard</a></h3>
+                <p>An interactive, data-driven Excel sales dashboard analyzing revenue, order values, volume, and customer trends. Features advanced monthly slicers, conditional formatting, and KPI trend charts.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 9: Coffee Shop -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Coffee-Shop-Sales-Dashboard" class="block-20 zoom-effect" style="background-image: url('assets/images/proj_3_powerbi.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Coffee-Shop-Sales-Dashboard">Coffee Shop Sales Dashboard</a></h3>
+                <p>An interactive sales dashboard analyzing transaction quantities per hour, categories distribution, location footfalls, and size distribution. Features advanced custom slicers for day and month-level insights.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <br>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 4rem 0;">
+        <br>
+
+        <!-- Subsection 2: JavaScript & Frontend Projects -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h3 class="mb-3" style="color: #ffbd39; font-weight: 600; letter-spacing: 1px;">💻 JavaScript &amp; Frontend Projects</h3>
+            <p style="font-size: 16px; color: #999999;">Interactive frontend utility applications and web interfaces built using HTML, CSS, and modern JavaScript.</p>
+          </div>
+        </div>
+
+        <div class="row d-flex">
+          <!-- Card 1: Weather App -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Weather-App" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1601297183305-6df142704ea2?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Weather-App">Weather Application</a></h3>
+                <p>A responsive weather application fetching current weather metrics (temperature, humidity, wind speed) based on user city inputs via the OpenWeatherMap API with a clean custom JavaScript UI.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2: Google Gemini Clone -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Google-Gemini-Clone" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Google-Gemini-Clone">Google Gemini Clone</a></h3>
+                <p>A frontend clone of Google Gemini built using React and Tailwind CSS, featuring elegant chat histories, responsive panel sidebars, and custom AI chat dialog rendering.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3: Age Calculator -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Age-Calculator" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Age-Calculator">Age Calculator</a></h3>
+                <p>A smart JavaScript application that dynamically calculates precise chronological age (years, months, days) based on a selected birthdate using custom calendar logic.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row d-flex">
+          <!-- Card 4: E-Commerce JS Website -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/E-COMERCE-WEBSITE" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/E-COMERCE-WEBSITE">E-Commerce JS Website</a></h3>
+                <p>An interactive, vanilla JavaScript shopping interface featuring product grids, search filtering, cart additions, count calculations, and dynamic pricing updates.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 5: Login Page -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Login-page" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Login-page">Interactive Login Page</a></h3>
+                <p>A modern user authentication frontend featuring responsive CSS layout, field validation, password visibility toggles, and customized user error alerts.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 6: Password Generator -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Password-Gererator" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Password-Gererator">Password Generator</a></h3>
+                <p>A secure password generation utility allowing customized lengths, toggling uppercase/lowercase letters, numerals, and special characters, with copy-to-clipboard functionality.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row d-flex">
+          <!-- Card 7: Quiz App -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quizz-app" class="block-20 zoom-effect" style="background-image: url('assets/images/quiz_app_mockup.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quizz-app">Quiz Application</a></h3>
+                <p>An interactive trivia application with timers, score tallies, immediate answer feedback, customizable categories, and responsive question card transitions.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 8: Quote Creator -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quote-Creator" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quote-Creator">Dynamic Quote Creator</a></h3>
+                <p>A dynamic web page that generates random quotes, styled in an elegant responsive quote card format with features to post directly to social media portals.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 9: To-Do List -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/To-Do%20list" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/To-Do%20list">Interactive To-Do List</a></h3>
+                <p>A custom task management dashboard featuring task creation, task state completion toggling, task deletion, and browser storage persistence for offline use.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
 	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
@@ -477,44 +837,44 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="100">0</strong><span>+</span>
-                <span>Achievements Leetcode</span>
+                <strong class="number" data-number="50">0</strong><span>+</span>
+                <span>LeetCode Solved (DSA)</span>
               </div>
             </div>
           </div>
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="5">0</strong> <span>+</span>
-                <span>Projects</span>
+                <strong class="number" data-number="18">0</strong> <span>+</span>
+                <span>Full-Stack, Backend &amp; Frontend Projects</span>
               </div>
             </div>
           </div>
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="3">0</strong><span>&#x2605;&#x2605;&#x2605;</span>
-                <span>Hacker Rank</span>
+                <strong class="number" data-number="4">0</strong><span>+</span>
+                <span>Professional Certifications</span>
               </div>
             </div>
           </div>
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="5">0</strong><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span>
-                <span>Problem-solving Skill</span>
+                <strong class="number" data-number="1">0</strong><span>Year</span>
+                <span>Professional Experience</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
+	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(assets/images/bg_1.jpg)">
 			<!-- <div class="container"> -->
 				<div class="row justify-content-center">
 					<div class="col-md-7 ftco-animate text-center">
 						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love to Solving challenging problems in Data Structures and Algorithms (DSA) &amp; uncover hidden data stories </h4>
+						<div class="heading"> <h4> I love solving challenging problems in Data Structures and Algorithms (DSA) &amp; building modern web apps </h4>
 						<br>
 						<p><a href="https://github.com/ravi7317" class="btn btn-primary py-3 px-5">GitHub</a></p>
 						</div>
@@ -543,7 +903,7 @@
           			<span class="icon-map-signs"></span>
           		</div>
           		<h3 class="mb-4">Address</h3>
-	            <p>Jaunpur-Uttar Pradesh, India</p>
+	            <p>Noida, India</p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -570,7 +930,7 @@
           			<span class="icon-globe"></span>
           		</div>
           		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="https://drive.google.com/file/d/1Mwp7jVXJ1uSDWBOKJ2uhz5dzGjxA6vRW/view?usp=sharing">Resume Link</a></p>
+	            <p><a href="https://drive.google.com/file/d/1Yv3GhLg3StijMmZciMRYKCDp3ayBmGk9/view?usp=drive_link" target="_blank">Resume Link</a></p>
 	          </div>
           </div>
 		  <div class="container">
@@ -611,25 +971,91 @@
 		</div>
 	  </footer>
 
+  <!-- Aether AI Demo Modal -->
+  <div class="modal fade" id="aetherDemoModal" tabindex="-1" role="dialog" aria-labelledby="aetherDemoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" style="background: #1c1c1c; border: 1px solid #ffbd39; border-radius: 8px; box-shadow: 0 0 20px rgba(255, 189, 57, 0.2);">
+        <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 15px 20px;">
+          <h5 class="modal-title" id="aetherDemoModalLabel" style="color: #ffbd39; font-weight: 600; font-size: 18px; letter-spacing: 1px;">Aether AI — Demo Video 🎥</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 0.8; outline: none;">
+            <span aria-hidden="true" style="font-size: 28px; line-height: 1;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1hInqcnPQnAFS0K0fGQAaqlFO68B5_fAy/preview" allow="autoplay" allowfullscreen style="border: 0;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.easing.1.3.js"></script>
+  <script src="assets/js/jquery.waypoints.min.js"></script>
+  <script src="assets/js/jquery.stellar.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/aos.js"></script>
+  <script src="assets/js/jquery.animateNumber.min.js"></script>
+  <script src="assets/js/scrollax.min.js"></script>
   
-  <script src="js/main.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // Initialize the typing animation
+    const typingAnimationElement = document.getElementById('typing-animation');
+
+    // Create an array of typing text
+    const typingTexts = [
+      'Full-Stack Software Engineer  ',
+      'React.js & Python Developer  ',
+      'FastAPI & Kafka Engineer  ',
+    ];
+
+    // Create a function to display the typing animation for a given text
+    function playTypingAnimation(text) {
+      // Loop through each character and add it to the element
+      for (let i = 0; i < text.length; i++) {
+        setTimeout(() => {
+          typingAnimationElement.textContent += text[i];
+        }, i * 200); // Increase the delay to slow down the typing animation
+      }
+
+      // Once the animation is complete, reset the text and start over
+      setTimeout(() => {
+        typingAnimationElement.textContent = '';
+        playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
+      }, text.length * 200);
+    }
+
+    // Start the typing animation loop
+    playTypingAnimation(typingTexts[0]);
+
+    // Force all external links to open in a new tab
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      // Exclude drive preview inside iframe
+      if (!link.closest('#aetherDemoModal')) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+
+    // Stop video when modal is closed
+    $('#aetherDemoModal').on('hidden.bs.modal', function () {
+      var $iframe = $(this).find('iframe');
+      var tempSrc = $iframe.attr('src');
+      $iframe.attr('src', '');
+      $iframe.attr('src', tempSrc);
+    });
+  </script>
     
   </body>
 </html>
