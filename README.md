@@ -69,10 +69,10 @@ To run this project locally, follow these simple steps:
 Simply clone the repository and open the `index.html` file in any modern web browser:
 ```bash
 # Clone the repository
-git clone https://github.com/ravi7317/Portfolio-Website-Template-main.git
+git clone https://github.com/ravi7317/portfolio-website-ravi.git
 
 # Navigate to the folder
-cd Portfolio-Website-Template-main
+cd portfolio-website-ravi
 
 # Open index.html (Double-click the file, or open with browser)
 ```
