@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#131314"/>
+      <stop offset="100%" stop-color="#0f0f10"/>
+    </linearGradient>
+    
+    <!-- Sidebar background -->
+    <linearGradient id="sidebar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1f20"/>
+      <stop offset="100%" stop-color="#1a1a1b"/>
+    </linearGradient>
+
+    <!-- Gemini Magic Star Gradient -->
+    <linearGradient id="gemini-star-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#91b4ff"/>
+      <stop offset="50%" stop-color="#d9e2fc"/>
+      <stop offset="100%" stop-color="#e2b1ff"/>
+    </linearGradient>
+
+    <!-- Glowing effect -->
+    <filter id="star-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="800" height="500" rx="15" fill="url(#bg-grad)" />
+
+  <!-- App Window Border -->
+  <rect x="40" y="30" width="720" height="440" rx="12" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5" />
+
+  <!-- Sidebar -->
+  <rect x="41" y="31" width="180" height="438" fill="url(#sidebar-grad)" rx="11" />
+  
+  <!-- Sidebar Content -->
+  <!-- Menu Burger Icon -->
+  <path d="M60 65 L80 65 M60 72 L80 72 M60 79 L80 79" stroke="#ffffff" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- New Chat Button -->
+  <rect x="55" y="110" width="130" height="36" rx="18" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.1" />
+  <path d="M90 128 L106 128 M98 120 L98 136" stroke="#e2b1ff" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="120" y="133" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="12" font-weight="500">New chat</text>
+  
+  <!-- Chat History Items -->
+  <text x="60" y="180" fill="#ffffff" fill-opacity="0.3" font-family="Poppins, sans-serif" font-size="10" font-weight="600" letter-spacing="0.5">RECENT</text>
+  
+  <g transform="translate(55, 195)">
+    <!-- Chat Icon -->
+    <path d="M5 5 L18 5 L18 15 L10 15 L5 19 Z" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="25" y="14" fill="#ffffff" fill-opacity="0.7" font-family="Poppins, sans-serif" font-size="11">Tailwind CSS Flexbox...</text>
+  </g>
+  
+  <g transform="translate(55, 230)">
+    <path d="M5 5 L18 5 L18 15 L10 15 L5 19 Z" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="25" y="14" fill="#ffffff" fill-opacity="0.7" font-family="Poppins, sans-serif" font-size="11">React component state</text>
+  </g>
+
+  <g transform="translate(55, 265)">
+    <path d="M5 5 L18 5 L18 15 L10 15 L5 19 Z" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="25" y="14" fill="#ffffff" fill-opacity="0.7" font-family="Poppins, sans-serif" font-size="11">How to use Gemini API</text>
+  </g>
+
+  <!-- User profile footer in sidebar -->
+  <circle cx="70" cy="430" r="12" fill="#ffbd39" />
+  <text x="70" y="434" fill="#131314" font-family="Poppins, sans-serif" font-size="11" font-weight="700" text-anchor="middle">R</text>
+  <text x="92" y="434" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="12">Ravi Verma</text>
+
+  <!-- Main Chat Area -->
+  
+  <!-- Header with "Gemini" text -->
+  <g transform="translate(250, 48)">
+    <text x="0" y="22" fill="#ffffff" font-family="Poppins, sans-serif" font-size="20" font-weight="600" letter-spacing="0.5">Gemini</text>
+    <rect x="88" y="8" width="35" height="16" rx="8" fill="#ffffff" fill-opacity="0.08" />
+    <text x="105" y="20" fill="#91b4ff" font-family="Poppins, sans-serif" font-size="9" font-weight="600" text-anchor="middle">1.5 Pro</text>
+  </g>
+  
+  <!-- Chat Thread -->
+  
+  <!-- User Message -->
+  <g transform="translate(250, 110)">
+    <circle cx="20" cy="20" r="12" fill="#444746" />
+    <text x="20" y="24" fill="#ffffff" font-family="Poppins, sans-serif" font-size="11" font-weight="600" text-anchor="middle">U</text>
+    <text x="45" y="20" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13" font-weight="500">Explain the difference between state and props in React.</text>
+  </g>
+
+  <!-- Gemini Response -->
+  <g transform="translate(250, 160)">
+    <!-- Gemini Star SVG Icon -->
+    <path d="M20 5 C20 13 13 20 5 20 C13 20 20 27 20 35 C20 27 27 20 35 20 C27 20 20 13 20 5 Z" fill="url(#gemini-star-grad)" filter="url(#star-glow)"/>
+    
+    <!-- Rendered Markdown Answer Mockup -->
+    <g transform="translate(45, 15)">
+      <text x="0" y="10" fill="#e3e3e3" font-family="Poppins, sans-serif" font-size="13" font-weight="600">In React, state and props manage data flow differently:</text>
+      
+      <!-- Bullet 1 -->
+      <circle cx="5" cy="35" r="2.5" fill="#91b4ff" />
+      <text x="15" y="39" fill="#c4c7c5" font-family="Poppins, sans-serif" font-size="12"><tspan font-weight="600" fill="#ffffff">Props</tspan> are read-only inputs passed from parent components.</text>
+      
+      <!-- Bullet 2 -->
+      <circle cx="5" cy="60" r="2.5" fill="#91b4ff" />
+      <text x="15" y="64" fill="#c4c7c5" font-family="Poppins, sans-serif" font-size="12"><tspan font-weight="600" fill="#ffffff">State</tspan> is local, private data managed within the component.</text>
+      
+      <!-- Bullet 3 -->
+      <circle cx="5" cy="85" r="2.5" fill="#91b4ff" />
+      <text x="15" y="89" fill="#c4c7c5" font-family="Poppins, sans-serif" font-size="12">Modifying state triggers a re-render of the component view.</text>
+    </g>
+  </g>
+
+  <!-- Input Bar Area at Bottom -->
+  <rect x="250" y="380" width="470" height="50" rx="25" fill="#1e1f20" stroke="#ffffff" stroke-opacity="0.08" />
+  
+  <text x="275" y="411" fill="#c4c7c5" fill-opacity="0.5" font-family="Poppins, sans-serif" font-size="14">Enter a prompt here...</text>
+  
+  <!-- Input Actions (Microphone, Image upload, Submit arrow) -->
+  <g transform="translate(620, 393)">
+    <!-- Image Icon -->
+    <rect x="0" y="4" width="16" height="14" rx="2" fill="none" stroke="#91b4ff" stroke-width="1.5" />
+    <circle cx="5" cy="9" r="2" fill="#91b4ff" />
+    <path d="M2 16 L7 11 L11 15 L14 12 L15 13" fill="none" stroke="#91b4ff" stroke-width="1.5" />
+
+    <!-- Mic Icon -->
+    <rect x="26" y="2" width="6" height="12" rx="3" fill="none" stroke="#91b4ff" stroke-width="1.5" />
+    <path d="M23 8 A 6 6 0 0 0 35 8" fill="none" stroke="#91b4ff" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="29" y1="14" x2="29" y2="18" stroke="#91b4ff" stroke-width="1.5" />
+
+    <!-- Send Arrow (in a circular blue button) -->
+    <circle cx="65" cy="11" r="13" fill="#ffffff" fill-opacity="0.04" />
+    <path d="M60 11 L70 11 M66 7 L70 11 L66 15" fill="none" stroke="#c4c7c5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

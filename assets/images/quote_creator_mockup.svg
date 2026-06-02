@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a121d"/>
+      <stop offset="100%" stop-color="#05090f"/>
+    </linearGradient>
+    
+    <!-- Quote Card Premium Gradient -->
+    <linearGradient id="quote-card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff007f" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#7f00ff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.15"/>
+    </linearGradient>
+    
+    <!-- Glassmorphic border -->
+    <linearGradient id="border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff007f" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <!-- Glowing Effect -->
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="15" fill="url(#bg-grad)" />
+  
+  <circle cx="400" cy="250" r="180" fill="#7f00ff" opacity="0.15" filter="url(#neon-glow)" />
+
+  <!-- App Window Border -->
+  <rect x="40" y="30" width="720" height="440" rx="12" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1.5" />
+  
+  <!-- Title -->
+  <text x="400" y="70" fill="#ffffff" fill-opacity="0.4" font-family="Poppins, sans-serif" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="2">QUOTIFY - DYNAMIC QUOTE CREATOR</text>
+
+  <!-- Quote Card Box -->
+  <rect x="180" y="110" width="440" height="260" rx="20" fill="url(#quote-card-grad)" stroke="url(#border-grad)" stroke-width="1.5" filter="url(#neon-glow)" />
+  
+  <!-- Large Quote Mark Symbol (Vector SVG) -->
+  <path d="M220 180 C220 150 240 140 250 140 C240 160 245 175 255 175 C265 175 270 165 270 155 C270 140 250 120 230 140 C210 160 210 190 215 210 L235 210 L235 190 L220 190 Z" fill="#ffffff" fill-opacity="0.1" />
+  <path d="M280 180 C280 150 300 140 310 140 C300 160 305 175 315 175 C325 175 330 165 330 155 C330 140 310 120 290 140 C270 160 270 190 275 210 L295 210 L295 190 L280 190 Z" fill="#ffffff" fill-opacity="0.1" />
+
+  <!-- Quote Text -->
+  <text x="400" y="180" fill="#ffffff" font-family="Georgia, serif" font-size="18" font-style="italic" font-weight="500" text-anchor="middle">
+    "The only way to do great work is to
+  </text>
+  <text x="400" y="210" fill="#ffffff" font-family="Georgia, serif" font-style="italic" font-weight="500" text-anchor="middle">
+    love what you do."
+  </text>
+  
+  <!-- Quote Author -->
+  <text x="400" y="255" fill="#ff007f" font-family="Poppins, sans-serif" font-size="14" font-weight="600" text-anchor="middle" letter-spacing="1">- Steve Jobs</text>
+
+  <!-- Interactive buttons inside card -->
+  <!-- Left Side: Theme customizer indicator -->
+  <g transform="translate(220, 310)">
+    <circle cx="10" cy="10" r="8" fill="#ff007f" />
+    <circle cx="30" cy="10" r="8" fill="#7f00ff" />
+    <circle cx="50" cy="10" r="8" fill="#00f0ff" />
+  </g>
+
+  <!-- Right Side: Copy & Social Share -->
+  <g transform="translate(500, 300)">
+    <!-- Copy Icon -->
+    <rect width="20" height="20" rx="4" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.5" />
+    <path d="M4 4 L14 4 L14 14 L4 14 Z" fill="#0a121d" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.5" />
+    
+    <!-- Share Button (Twitter/X Logo Outline) -->
+    <g transform="translate(35, 0)">
+      <rect width="20" height="20" rx="4" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.5" />
+      <path d="M4 4 L9 10 L4 16 M16 4 L11 10 L16 16" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.5" />
+      <line x1="8" y1="9" x2="12" y2="11" stroke="#ffffff" stroke-width="1.5" />
+    </g>
+  </g>
+
+  <!-- Action: Next Quote Button -->
+  <g transform="translate(320, 395)">
+    <rect width="160" height="40" rx="20" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.15" />
+    <text x="80" y="24" fill="#ffffff" font-family="Poppins, sans-serif" font-size="13" font-weight="600" text-anchor="middle">New Quote &amp; #9889;</text>
+  </g>
+</svg>

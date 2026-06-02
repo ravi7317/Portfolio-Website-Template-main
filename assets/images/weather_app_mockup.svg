@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="100%" stop-color="#070a13"/>
+    </linearGradient>
+    
+    <!-- Card Glassmorphism -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+    
+    <!-- Accent Gradients -->
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffbd39"/>
+      <stop offset="100%" stop-color="#ff8f39"/>
+    </linearGradient>
+    
+    <linearGradient id="sky-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+    
+    <!-- Glowing Shadow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="800" height="500" rx="15" fill="url(#bg-grad)" />
+  
+  <!-- Subtle background glow -->
+  <circle cx="650" cy="150" r="150" fill="#0066ff" opacity="0.15" filter="url(#glow)"/>
+  <circle cx="150" cy="380" r="180" fill="#ffbd39" opacity="0.08" filter="url(#glow)"/>
+
+  <!-- Application Window Header -->
+  <rect x="40" y="30" width="720" height="440" rx="12" fill="url(#card-grad)" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1.5" />
+  
+  <!-- Window Controls -->
+  <circle cx="65" cy="55" r="6" fill="#ff5f56" />
+  <circle cx="85" cy="55" r="6" fill="#ffbd2e" />
+  <circle cx="105" cy="55" r="6" fill="#27c93f" />
+  <text x="400" y="60" fill="#ffffff" fill-opacity="0.4" font-family="Poppins, sans-serif" font-size="13" text-anchor="middle" letter-spacing="1">WEATHER DASHBOARD</text>
+
+  <!-- Search Bar -->
+  <rect x="250" y="90" width="300" height="36" rx="18" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.15" />
+  <path d="M272 108 L278 114 M275 105 A4 4 0 1 1 267 105 A4 4 0 1 1 275 105 Z" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2" fill="none" />
+  <text x="290" y="113" fill="#ffffff" fill-opacity="0.3" font-family="Poppins, sans-serif" font-size="12">Search city...</text>
+  
+  <!-- Main Weather Card -->
+  <rect x="80" y="150" width="300" height="280" rx="16" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.08" />
+  
+  <!-- Weather Icon Group -->
+  <g transform="translate(140, 210)">
+    <!-- Sun -->
+    <circle cx="45" cy="25" r="30" fill="url(#accent-grad)" filter="url(#glow)" />
+    <!-- Cloud -->
+    <path d="M20 50 A 15 15 0 0 1 30 25 A 22 22 0 0 1 70 25 A 18 18 0 0 1 80 50 Z" fill="#ffffff" fill-opacity="0.9" filter="url(#soft-glow)" />
+  </g>
+  
+  <!-- Weather Metrics inside Main Card -->
+  <text x="230" y="225" fill="#ffffff" font-family="Poppins, sans-serif" font-size="64" font-weight="700">24°C</text>
+  <text x="230" y="250" fill="#ffbd39" font-family="Poppins, sans-serif" font-size="16" font-weight="600" letter-spacing="0.5">Scattered Clouds</text>
+  <text x="230" y="272" fill="#ffffff" fill-opacity="0.6" font-family="Poppins, sans-serif" font-size="14">London, UK</text>
+  
+  <!-- Grid Info (Humidity, Wind) -->
+  <line x1="100" y1="310" x2="360" y2="310" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1" />
+  
+  <!-- Humidity -->
+  <text x="120" y="345" fill="#ffffff" fill-opacity="0.5" font-family="Poppins, sans-serif" font-size="12">HUMIDITY</text>
+  <text x="120" y="370" fill="#ffffff" font-family="Poppins, sans-serif" font-size="18" font-weight="600">64%</text>
+  
+  <!-- Wind Speed -->
+  <text x="260" y="345" fill="#ffffff" fill-opacity="0.5" font-family="Poppins, sans-serif" font-size="12">WIND SPEED</text>
+  <text x="260" y="370" fill="#ffffff" font-family="Poppins, sans-serif" font-size="18" font-weight="600">12 km/h</text>
+
+  <!-- Right Panel: 5-Day Forecast -->
+  <rect x="420" y="150" width="300" height="280" rx="16" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.08" />
+  <text x="450" y="185" fill="#ffffff" font-family="Poppins, sans-serif" font-size="16" font-weight="600">5-Day Forecast</text>
+  
+  <!-- Day 1 -->
+  <g transform="translate(450, 205)">
+    <text x="0" y="18" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="14">Mon</text>
+    <circle cx="100" cy="12" r="8" fill="url(#accent-grad)" />
+    <path d="M96 18 A 5 5 0 0 1 100 10 A 7 7 0 0 1 112 10 Z" fill="#ffffff" fill-opacity="0.8" />
+    <text x="200" y="18" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="600" text-anchor="end">25° / 18°</text>
+  </g>
+  <line x1="450" y1="240" x2="690" y2="240" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+  
+  <!-- Day 2 -->
+  <g transform="translate(450, 250)">
+    <text x="0" y="18" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="14">Tue</text>
+    <circle cx="100" cy="12" r="10" fill="url(#accent-grad)" filter="url(#soft-glow)" />
+    <text x="200" y="18" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="600" text-anchor="end">27° / 19°</text>
+  </g>
+  <line x1="450" y1="285" x2="690" y2="285" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+
+  <!-- Day 3 -->
+  <g transform="translate(450, 295)">
+    <text x="0" y="18" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="14">Wed</text>
+    <path d="M92 18 A 6 6 0 0 1 100 8 A 8 8 0 0 1 114 10 Z" fill="#90a4ae" />
+    <text x="200" y="18" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="600" text-anchor="end">21° / 15°</text>
+  </g>
+  <line x1="450" y1="330" x2="690" y2="330" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+
+  <!-- Day 4 -->
+  <g transform="translate(450, 340)">
+    <text x="0" y="18" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="14">Thu</text>
+    <path d="M92 18 A 6 6 0 0 1 100 8 A 8 8 0 0 1 114 10 Z" fill="#90a4ae" />
+    <!-- Rain drops -->
+    <line x1="97" y1="22" x2="95" y2="26" stroke="#00d2ff" stroke-width="1.5" />
+    <line x1="104" y1="22" x2="102" y2="26" stroke="#00d2ff" stroke-width="1.5" />
+    <text x="200" y="18" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="600" text-anchor="end">19° / 13°</text>
+  </g>
+  <line x1="450" y1="375" x2="690" y2="375" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+
+  <!-- Day 5 -->
+  <g transform="translate(450, 385)">
+    <text x="0" y="18" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="14">Fri</text>
+    <circle cx="100" cy="12" r="10" fill="url(#accent-grad)" />
+    <text x="200" y="18" fill="#ffffff" font-family="Poppins, sans-serif" font-size="14" font-weight="600" text-anchor="end">24° / 17°</text>
+  </g>
+</svg>

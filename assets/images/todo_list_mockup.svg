@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080e1b"/>
+      <stop offset="100%" stop-color="#04070e"/>
+    </linearGradient>
+    
+    <!-- Card Glassmorphism -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+
+    <!-- Category Gradients -->
+    <linearGradient id="purple-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7e22ce"/>
+    </linearGradient>
+
+    <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+
+    <!-- Glowing effect -->
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="15" fill="url(#bg-grad)" />
+
+  <!-- App Window Border -->
+  <rect x="40" y="30" width="720" height="440" rx="12" fill="url(#card-grad)" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1.5" />
+  
+  <!-- Window Header -->
+  <text x="400" y="65" fill="#ffffff" fill-opacity="0.4" font-family="Poppins, sans-serif" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="2">DASHBOARD - TASK MANAGER</text>
+
+  <!-- Left Column: Add Task and Categories -->
+  <rect x="80" y="110" width="280" height="310" rx="16" fill="#ffffff" fill-opacity="0.02" stroke="#ffffff" stroke-opacity="0.05" />
+  
+  <text x="110" y="150" fill="#ffffff" font-family="Poppins, sans-serif" font-size="16" font-weight="600">Create New Task</text>
+  
+  <!-- Input box -->
+  <g transform="translate(110, 175)">
+    <rect width="220" height="40" rx="8" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.1" />
+    <text x="15" y="24" fill="#ffffff" fill-opacity="0.3" font-family="Poppins, sans-serif" font-size="12">Task title...</text>
+  </g>
+  
+  <!-- Category Selectors -->
+  <g transform="translate(110, 235)">
+    <!-- Work (Purple badge) -->
+    <rect width="60" height="24" rx="12" fill="url(#purple-grad)" />
+    <text x="30" y="16" fill="#ffffff" font-family="Poppins, sans-serif" font-size="10" font-weight="600" text-anchor="middle">Work</text>
+    
+    <!-- Personal (Blue badge) -->
+    <rect x="70" width="70" height="24" rx="12" fill="url(#blue-grad)" />
+    <text x="105" y="16" fill="#ffffff" font-family="Poppins, sans-serif" font-size="10" font-weight="600" text-anchor="middle">Personal</text>
+
+    <!-- Ideas (Gray badge) -->
+    <rect x="150" width="60" height="24" rx="12" fill="#ffffff" fill-opacity="0.1" />
+    <text x="180" y="16" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="10" font-weight="600" text-anchor="middle">Ideas</text>
+  </g>
+
+  <!-- Add Task Button -->
+  <g transform="translate(110, 285)">
+    <rect width="220" height="40" rx="20" fill="#ffbd39" filter="url(#neon-glow)" />
+    <text x="110" y="24" fill="#04070e" font-family="Poppins, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Add Task +</text>
+  </g>
+
+  <!-- Progress Meter at Bottom Left -->
+  <g transform="translate(110, 360)">
+    <rect width="220" height="8" rx="4" fill="#ffffff" fill-opacity="0.05" />
+    <rect width="165" height="8" rx="4" fill="#ffbd39" />
+    <text x="0" y="26" fill="#ffffff" fill-opacity="0.5" font-family="Poppins, sans-serif" font-size="11">TASKS COMPLETED</text>
+    <text x="220" y="26" fill="#ffbd39" font-family="Poppins, sans-serif" font-size="12" font-weight="700" text-anchor="end">75%</text>
+  </g>
+  
+  <!-- Right Column: Task List -->
+  <rect x="390" y="110" width="330" height="310" rx="16" fill="#ffffff" fill-opacity="0.02" stroke="#ffffff" stroke-opacity="0.05" />
+  
+  <text x="420" y="150" fill="#ffffff" font-family="Poppins, sans-serif" font-size="16" font-weight="600">Active Tasks</text>
+
+  <!-- Task 1 (Completed) -->
+  <g transform="translate(420, 175)">
+    <rect width="270" height="40" rx="8" fill="#ffffff" fill-opacity="0.02" stroke="#ffffff" stroke-opacity="0.05" />
+    <!-- Checked Box -->
+    <rect x="12" y="12" width="16" height="16" rx="4" fill="#ffbd39" />
+    <path d="M16 20 L19 23 L24 17" fill="none" stroke="#04070e" stroke-width="2" />
+    <!-- Strikethrough Text -->
+    <text x="42" y="24" fill="#ffffff" fill-opacity="0.4" font-family="Poppins, sans-serif" font-size="12" text-decoration="line-through">Design portfolio system</text>
+    <!-- Badge -->
+    <rect x="210" y="11" width="50" height="18" rx="9" fill="url(#purple-grad)" opacity="0.5" />
+    <text x="235" y="23" fill="#ffffff" fill-opacity="0.8" font-family="Poppins, sans-serif" font-size="8" font-weight="600" text-anchor="middle">Work</text>
+  </g>
+
+  <!-- Task 2 (Pending) -->
+  <g transform="translate(420, 225)">
+    <rect width="270" height="40" rx="8" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.08" />
+    <!-- Unchecked Box -->
+    <rect x="12" y="12" width="16" height="16" rx="4" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2" />
+    <!-- Text -->
+    <text x="42" y="24" fill="#ffffff" fill-opacity="0.9" font-family="Poppins, sans-serif" font-size="12">Integrate API endpoints</text>
+    <!-- Badge -->
+    <rect x="210" y="11" width="50" height="18" rx="9" fill="url(#purple-grad)" />
+    <text x="235" y="23" fill="#ffffff" font-family="Poppins, sans-serif" font-size="8" font-weight="600" text-anchor="middle">Work</text>
+  </g>
+
+  <!-- Task 3 (Pending) -->
+  <g transform="translate(420, 275)">
+    <rect width="270" height="40" rx="8" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.08" />
+    <!-- Unchecked Box -->
+    <rect x="12" y="12" width="16" height="16" rx="4" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2" />
+    <!-- Text -->
+    <text x="42" y="24" fill="#ffffff" fill-opacity="0.9" font-family="Poppins, sans-serif" font-size="12">Buy groceries</text>
+    <!-- Badge -->
+    <rect x="200" y="11" width="60" height="18" rx="9" fill="url(#blue-grad)" />
+    <text x="230" y="23" fill="#ffffff" font-family="Poppins, sans-serif" font-size="8" font-weight="600" text-anchor="middle">Personal</text>
+  </g>
+
+  <!-- Task 4 (Completed) -->
+  <g transform="translate(420, 325)">
+    <rect width="270" height="40" rx="8" fill="#ffffff" fill-opacity="0.02" stroke="#ffffff" stroke-opacity="0.05" />
+    <rect x="12" y="12" width="16" height="16" rx="4" fill="#ffbd39" />
+    <path d="M16 20 L19 23 L24 17" fill="none" stroke="#04070e" stroke-width="2" />
+    <text x="42" y="24" fill="#ffffff" fill-opacity="0.4" font-family="Poppins, sans-serif" font-size="12" text-decoration="line-through">Call team coordinator</text>
+    <!-- Delete Icon -->
+    <g transform="translate(245, 12)" opacity="0.3">
+      <!-- Trash icon -->
+      <path d="M2 3 L14 3 M5 3 L5 12 A 2 2 0 0 0 7 14 L9 14 A 2 2 0 0 0 11 12 L11 3 M6 1 L10 1" stroke="#ffffff" stroke-width="1.5" fill="none" />
+    </g>
+  </g>
+</svg>
