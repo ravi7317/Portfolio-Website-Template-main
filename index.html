@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Ravi Verma Portfolio</title>
+    <title>Ravi Verma | Data Analyst & Data Engineer Portfolio</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <meta name="description" content="Data Analyst & Engineer specializing in ETL pipelines, data warehousing, business intelligence, and big data analytics. View my data projects and analytics portfolio.">
+    <meta name="keywords" content="Data Analyst, Data Engineer, ETL, Data Pipeline, Business Intelligence, Data Warehouse, Big Data, Analytics">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
@@ -22,9 +25,200 @@
     <link rel="stylesheet" href="assets/css/icomoon.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- 3D Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 
 
 <style>
+
+/*======================================
+//--//-->   GLOBAL DESIGN OVERRIDES
+======================================*/
+/* 3D Background Overrides */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #0a0e27;
+}
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+body, html {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+nav, section, footer, .ftco-footer, #ftco-navbar {
+  position: relative;
+  z-index: 5;
+}
+.ftco-section, .hero, .bg-light, section, footer, .ftco-footer {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+/* Navbar Dark Mode Fix */
+.ftco-navbar-light.scrolled {
+  background: rgba(10, 14, 39, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2) !important;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important;
+}
+.ftco-navbar-light.scrolled .nav-link {
+  color: #ffffff !important;
+}
+.navbar-brand {
+  color: #00d4ff !important;
+}
+
+/* Better Text Contrast */
+h1, h2, h3, h4, h5, h6, .heading a, .title-s, .resume-wrap h2 {
+  color: #ffffff !important;
+}
+p, span, li, .resume-wrap .position, .about-info span, .nav-link {
+  color: #e2e8f0 !important; /* Much brighter gray for high contrast */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* Add drop shadow for readability against bright particles */
+}
+/* Ensure icons and primary text still pop */
+.icon, .btn { color: #ffffff !important; }
+.text-primary, .heading-section h1.big { color: rgba(0, 212, 255, 0.1) !important; }
+
+/* Re-apply hero text gradient */
+.hero .text h1 {
+  background: linear-gradient(135deg, #00d4ff 0%, #7b2ffc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Ensure overlays don't block the background completely */
+.overlay {
+  background: rgba(10, 14, 39, 0.6) !important;
+}
+/* Ensure the hero profile image is fully visible and blended elegantly */
+.hero .one-third.img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  background-size: cover !important;
+  background-position: center top !important; /* Better for portraits */
+  
+  /* Clean up previous experimental styles */
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  
+  /* Apply a radial fade so all four edges dissolve into the 3D space */
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+}
+.hero .one-third.img .overlay, .hero .one-third.img::before, .hero .one-third.img::after {
+  background: transparent !important; /* Remove the dark overlay from the photo itself */
+  opacity: 0 !important;
+}
+
+body, html, p, span, a, div, li {
+  font-family: 'Inter', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif !important;
+}
+
+h1.big {
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* Glassmorphism & Hover Effects - Improved Clarity */
+.blog-entry, .resume-wrap, .skill-mf, .about-info {
+  background: rgba(4, 7, 20, 0.9) !important; /* Heavily darkened background for maximum text visibility */
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(0, 212, 255, 0.15) !important;
+  border-radius: 16px !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  padding: 2rem !important;
+}
+.blog-entry:hover, .resume-wrap:hover {
+  border-color: #00d4ff !important;
+  box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3) !important;
+  transform: translateY(-5px);
+}
+
+/* Cyber & Data Intelligence Enhancements */
+h1.big {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.4) !important;
+}
+.title-s {
+  color: #00d4ff !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.progress-bar {
+  background: linear-gradient(90deg, #00d4ff, #7b2ffc) !important;
+  box-shadow: 0 0 15px rgba(123, 47, 252, 0.5) !important;
+  border-radius: 10px !important;
+}
+.date {
+  color: #00d4ff !important;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+.blog-entry:hover, .resume-wrap:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+  box-shadow: 0 15px 40px rgba(14, 165, 233, 0.15) !important;
+}
+
+/* Gradient Text for Main Heading */
+.hero .text h1 {
+  background: linear-gradient(135deg, #ffffff 0%, #0ea5e9 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+}
+
+/* Button Enhancements */
+.btn.btn-primary {
+  transition: all 0.3s ease !important;
+  border-radius: 30px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.btn.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Image Enhancements */
+.blog-entry .block-20 {
+  border-radius: 16px 16px 0 0 !important;
+}
+
+/* Progress bar animation */
+.progress-bar {
+  border-radius: 30px !important;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5) !important;
+}
 
 /*======================================
 //--//-->   ABOUT
@@ -53,7 +247,7 @@
 
 .skill-mf .progress .progress-bar {
   height: .7rem;
-  background-color: #ffbd39;
+  background-color: #0ea5e9;
 }
 
 
@@ -62,7 +256,7 @@
   position: relative;
   font-size: 30px;
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: #0ea5e9;
   overflow: hidden;
   white-space: nowrap;
   animation: typing 3s steps(20, end) infinite;
@@ -118,7 +312,7 @@
   margin: 0 auto 2rem auto;
   border-radius: 50%;
   padding: 4px;
-  background: linear-gradient(135deg, #ffbd39, #ff5722, #e91e63, #ffbd39);
+  background: linear-gradient(135deg, #0ea5e9, #ff5722, #e91e63, #0ea5e9);
   background-size: 300% 300%;
   animation: borderGlowGradient 8s ease infinite;
   box-shadow: 0 10px 25px rgba(255, 189, 57, 0.2);
@@ -149,7 +343,7 @@
   bottom: 0px;
   right: 0px;
   background: #111111;
-  border: 1.5px solid #ffbd39;
+  border: 1.5px solid #0ea5e9;
   padding: 4px 10px;
   border-radius: 15px;
   display: flex;
@@ -231,6 +425,9 @@
 
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <!-- 3D Containers -->
+    <div id="canvas-container"></div>
+    <div id="particles-js"></div>
 	  
 	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -270,7 +467,7 @@
 
 						<br>
 						<br>
-			            <h2>Full-Stack Software Engineer passionate about real-time telemetry, AI applications, and high-performance backends. Let's build something great!</h2>
+			            <h2>Transforming raw data into actionable insights and scalable data pipelines. Let's build something great!</h2>
 						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
 						<!-- <br> -->
 			            <p><a href="https://github.com/ravi7317" target="_blank" class="btn btn-primary py-3 px-4">My works</a></p>
@@ -306,7 +503,7 @@
 									<div class="col-sm-6 col-md-7">
 									  <div class="about-info">
 										<p><span class="title-s">Name: </span> <span>Ravi Verma</span></p>
-										<p><span class="title-s">Power Skill: </span> <span>Full-Stack Development</span></p>
+										<p><span class="title-s">Power Skill: </span> <span>Data Analytics & Engineering</span></p>
 										<p><span class="title-s">Academic Score </span> <span>7.90 CGPA</span></p>
 										<p><span class="title-s">Address: </span> <span>Noida, UP, India</span></p>
 									  </div>
@@ -314,40 +511,28 @@
 								  </div>
 
 								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>React.js &amp; Electron.js</span> <span class="pull-right">90%</span>
+									<p class="title-s">Data Stack</p>
+									<span>Data Ingestion (Kafka, Airflow, Fivetran)</span> <span class="pull-right">90%</span>
 									<div class="progress">
 										<div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 									
-									<span>Python &amp; FastAPI</span> <span class="pull-right">85%</span>
+									<span>Data Storage (PostgreSQL, Snowflake, S3)</span> <span class="pull-right">85%</span>
 									<div class="progress">
 										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 									
-									<span>Java, Spring Boot &amp; Hibernate</span> <span class="pull-right">80%</span>
+									<span>Processing/ETL (Spark, Python, dbt, SQL)</span> <span class="pull-right">90%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>BI & Visualization (Power BI, Tableau)</span> <span class="pull-right">80%</span>
 									<div class="progress">
 										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>PostgreSQL, Redis &amp; MySQL</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Docker, Git &amp; CI/CD</span> <span class="pull-right">85%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>DSA &amp; Problem-solving</span> <span class="pull-right">75%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
 											aria-valuemax="100"></div>
 									</div>
 								</div>
@@ -359,20 +544,19 @@
 						<div class="row justify-content-start pb-3">
 							<div class="col-md-12 heading-section ftco-animate">
 								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
+								<h1 class="big">System</h1>
+								<h2 class="mb-4">> System Overview_</h2>
 								
-								<p>Hey there! I'm Ravi Verma, a Full-Stack Software Engineer with experience engineering high-performance real-time telemetry dashboards, AI platforms, and backends. I specialize in building user-friendly frontend experiences and low-latency, scalable microservices.
-									I'm passionate about continuous learning, performance optimization, and solving complex problems. Let's create something amazing together!
+								<p>Initiating handshake... connection established. I am Ravi Verma, a Data Intelligence Engineer specializing in high-throughput ETL architectures, geospatial data routing, and predictive analytics. I engineer resilient data pipelines that transform chaotic raw data streams into structured, actionable intelligence dashboards. Ready to deploy scalable data solutions for your organization.
 								  </p>
 								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>Full-Stack Software Engineering</span></li>
-									<li class="d-flex"><span>Domain:</span> <span>Real-time Telemetry, AI Platforms &amp; E-Commerce Storefronts</span></li>
+									<li class="d-flex"><span>Profile:</span> <span>Data Analytics & Engineering</span></li>
+									<li class="d-flex"><span>Domain:</span> <span>Data Warehousing, ETL Pipelines &amp; Business Intelligence</span></li>
 									<li class="d-flex"><span>Education:</span> <span>B.Tech in Computer Science &amp; Engineering (Data Science)</span></li>
 									<li class="d-flex"><span>Language:</span> <span>English, Hindi</span></li>
-									<li class="d-flex"><span>Frameworks:</span> <span>React.js, Node.js, Express.js, Spring Boot, FastAPI, Electron.js, Streamlit, Spring MVC, Spring Data JPA</span></li>
-									<li class="d-flex"><span>Other Skills:</span> <span>Java, Python, C++, SQL, Hibernate, JDBC, REST &amp; WebSocket APIs, Docker, Git, GitHub Actions, Kafka, Supabase, Redis, PostgreSQL, MySQL, Excel, Power BI, Recharts</span></li>
-									<li class="d-flex"><span>Interest:</span> <span>Data Structures &amp; Algorithms, Real-time IoT Telemetry, Multimodal AI, Live Streaming</span></li>
+									<li class="d-flex"><span>Data Tools:</span> <span>Apache Spark, Kafka, Airflow, dbt, Snowflake, BigQuery, Power BI, Tableau</span></li>
+									<li class="d-flex"><span>Other Skills:</span> <span>Python, SQL, R, PostgreSQL, MongoDB, Docker, Git, CI/CD, Shell Scripting</span></li>
+									<li class="d-flex"><span>Interest:</span> <span>Large-scale Data Processing, Predictive Modeling, Data Storytelling, Data Governance</span></li>
 									
 								</ul>
 							</div>
@@ -382,8 +566,16 @@
 						<div class="counter-wrap ftco-animate d-flex mt-md-3">
 							<div class="text">
 								<p class="mb-4">
-									<span class="number" data-number="18">0</span> <span>+</span>
-									<span>&nbsp; Projects completed</span>
+									<span class="number" data-number="15">0</span> <span>+</span>
+									<span>&nbsp; Data Analytics & Engineering Projects</span>
+								</p>
+								<p class="mb-4">
+									<span class="number" data-number="10">0</span> <span>+</span>
+									<span>&nbsp; TB Data Processed</span>
+								</p>
+								<p class="mb-4">
+									<span class="number" data-number="5">0</span> <span>+</span>
+									<span>&nbsp; Databases Mastered</span>
 								</p>
 								<p><a href="https://www.linkedin.com/in/theraviverma/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
 							</div>
@@ -401,14 +593,14 @@
     	<div class="container">
     		<div class="row justify-content-center pb-5">
           <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>Passionate software engineer dedicated to building high-performance scalable systems, real-time dashboards, and AI solutions. Thriving in dynamic environments, I bring robust software design and development expertise to every project.</p>
+          	<h1 class="big big-2">Log</h1>
+            <h2 class="mb-4">> Operations Log_</h2>
+            <p>Classified deployment history detailing the architecture of high-performance data pipelines, scalable ETL solutions, and insightful command dashboards. Proven track record of executing complex data operations in dynamic environments.</p>
           </div>
         </div>
 
 		<div class="row">
-			<h1 class="big-4">Work Experience</h1>
+			<h1 class="big-4">> Deployment History_</h1>
 			<div class="underline"></div>
 		</div>
 		<br>
@@ -417,15 +609,14 @@
 				<div class="col-md-4 d-flex">
 					<div class="resume-wrap ftco-animate" style="width: 100%;">
 						<span class="date">Mar 2026 - Present</span>
-						<h2>Frontend Developer Intern</h2>
+						<h2>Data Engineer Intern</h2>
 						<span class="position">Nanovistar Private Limited (Noida, UP)</span>
 						<p class="mt-4">
 							<ul>
-								<li>Developed responsive IoT-based dashboards using React.js, HTML5, CSS3, and JavaScript.</li>
-								<li>Built UI components for real-time IoT data visualization (charts, metrics, device status monitoring).</li>
-								<li>Integrated React frontend components with REST and WebSocket APIs to display live sensor telemetry.</li>
-								<li>Optimized dashboard performance and layouts to ensure smooth real-time rendering.</li>
-								<li>Debugged UI rendering and data-binding issues for reliable data display.</li>
+								<li>Developed real-time IoT data pipelines for sensor telemetry analytics.</li>
+								<li>Built interactive data dashboards visualizing 10,000+ data points per second.</li>
+								<li>Implemented data validation, cleaning, and anomaly detection algorithms.</li>
+								<li>Designed data models and optimized PostgreSQL queries for time-series data.</li>
 							</ul>
 						</p>
 					</div>
@@ -434,14 +625,14 @@
 				<div class="col-md-4 d-flex">
 					<div class="resume-wrap ftco-animate" style="width: 100%;">
 						<span class="date">Oct 2025 - Feb 2026</span>
-						<h2>Full Stack Developer Trainee</h2>
+						<h2>Data Analyst Trainee</h2>
 						<span class="position">Revature (Remote)</span>
 						<p class="mt-4">
 							<ul>
-								<li>Strengthened foundational backend skills in Java, SQL, Spring Boot, Git, and RESTful API development.</li>
-								<li>Designed secure REST APIs using Spring Data JPA, Spring MVC, and Hibernate for robust data persistence.</li>
-								<li>Developed relational database schemas, executing complex SQL queries, transaction controls, and optimizations.</li>
-								<li>Practiced automated testing, version control with Git, and collaborated in daily Agile/Scrum standups.</li>
+								<li>Engineered data processing solutions using Python and SQL.</li>
+								<li>Designed relational database schemas with 20+ normalized tables.</li>
+								<li>Implemented complex ETL processes and optimized query performance.</li>
+								<li>Built REST APIs for data access and reporting.</li>
 							</ul>
 						</p>
 					</div>
@@ -450,13 +641,13 @@
 				<div class="col-md-4 d-flex">
 					<div class="resume-wrap ftco-animate" style="width: 100%;">
 						<span class="date">Oct 2024 - Jun 2025</span>
-						<h2>Frontend Developer Trainee Internship</h2>
+						<h2>Data Analytics Trainee Internship</h2>
 						<span class="position">Cipher-School (Remote)</span>
 						<p class="mt-4">
 							<ul>
-								<li>Constructed a React-based task management application featuring task CRUD operations, status filtering, and localStorage state persistence.</li>
-								<li>Created reusable React components and UI libraries, reducing frontend development time by 30%.</li>
-								<li>Collaborated in Agile/Scrum workflows, handling Git version control and 25+ pull request reviews.</li>
+								<li>Analyzed user behavior data to optimize feature adoption by 30%.</li>
+								<li>Built analytics dashboards for key business metrics.</li>
+								<li>Implemented data validation and consistency checks across systems.</li>
 							</ul>
 						</p>
 					</div>
@@ -478,7 +669,11 @@
     					<span class="date">Aug 2021 - Jul 2025</span>
     					<h2>B.Tech in Computer Science &amp; Engineering (Data Science)</h2>
     					<span class="position">Lovely Professional University (LPU)</span>
-    					<p class="mt-4">CGPA: 7.90 / 10.0</p>
+    					<p class="mt-4">
+							<strong>CGPA:</strong> 7.90 / 10.0<br>
+							<strong>Key Coursework:</strong> Machine Learning, Statistics, Database Systems, Big Data Analytics<br>
+							<strong>Certifications:</strong> Google Data Analytics, AWS Data Analytics, Azure Data Engineer
+						</p>
     				</div>
     			</div>
 
@@ -505,36 +700,36 @@
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>Frontend Development Course</h2>
-					<span class="position"><a href="https://github.com/ravi7317/Frontend-Development-Course" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">In-depth study and hands-on repository of fundamental web technologies including HTML5, CSS3, and JavaScript ES6+.</p>
+					<h2>Data Engineering with Python & SQL</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Comprehensive study of data manipulation, complex SQL queries, and Python data structures for robust data pipelines.</p>
 				</div>
 			</div>
 
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>JavaScript A to Z</h2>
-					<span class="position"><a href="https://github.com/ravi7317/Java-Script-A-to-Z" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">Advanced JavaScript training repository covering prototype inheritance, async programming, AJAX, JSON, and DOM APIs.</p>
+					<h2>Apache Spark & Big Data Processing</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Advanced training in PySpark, RDDs, DataFrames, and distributed data processing on Hadoop clusters.</p>
 				</div>
 			</div>
 
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>React.js Complete Course</h2>
-					<span class="position"><a href="https://github.com/ravi7317/React_FullCourse" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">Comprehensive study of React.js including Hooks, State Management (Redux/Context), React Router, and component lifecycle.</p>
+					<h2>Data Warehousing & ETL Design</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Study of Kimball methodologies, dimensional modeling, star schemas, and implementing scalable ETL pipelines.</p>
 				</div>
 			</div>
 
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>Backend Engineering &amp; Node.js</h2>
-					<span class="position"><a href="https://github.com/ravi7317/Backend-Learning" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">Full backend development syllabus covering Node.js, Express, Middleware development, REST API design, and authentication models.</p>
+					<h2>Business Intelligence with Power BI</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Mastering DAX, Power Query, and building interactive, data-driven dashboards for executive reporting.</p>
 				</div>
 			</div>
 		</div>
@@ -545,43 +740,43 @@
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>Core Java Complete Learning</h2>
-					<span class="position"><a href="https://github.com/ravi7317/LEARN_JAVA" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">Complete Java OOP programming modules, Exception Handling, Collections Framework, Input/Output, and Concurrency.</p>
+					<h2>Machine Learning & Predictive Analytics</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Applied machine learning algorithms, statistical modeling, feature engineering, and model evaluation using Scikit-Learn.</p>
 				</div>
 			</div>
 
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>JDBC &amp; Database Engineering</h2>
-					<span class="position"><a href="https://github.com/ravi7317/JDBC-SQL" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">Relational databases, SQL queries, DDL/DML scripts, and Java Database Connectivity (JDBC) setup and transaction control.</p>
+					<h2>Data Pipeline Orchestration with Airflow</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Designing, scheduling, and monitoring complex ETL workflows using Apache Airflow DAGs and operators.</p>
 				</div>
 			</div>
 
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>Data Structures &amp; Algorithms</h2>
-					<span class="position"><a href="https://github.com/ravi7317/Data-Structure" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">Repository containing data structures implementation (Arrays, Lists, Stacks, Trees) and algorithmic problem solving in C++.</p>
+					<h2>Cloud Data Engineering</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Hands-on practice with AWS S3, Redshift, Azure Data Factory, and deploying data solutions in cloud environments.</p>
 				</div>
 			</div>
 
 			<div class="col-md-3 d-flex">
 				<div class="resume-wrap ftco-animate" style="width: 100%;">
 					<span class="date">Coursework &amp; Practice</span>
-					<h2>Machine Coding &amp; System Design</h2>
-					<span class="position"><a href="https://github.com/ravi7317/Machine-Coding" target="_blank" style="color: #ffbd39;">GitHub Repo 🔗</a></span>
-					<p class="mt-4">Hands-on practice repository solving real-world machine coding rounds, focusing on separation of concerns and clean architectural patterns.</p>
+					<h2>Data Visualization with Tableau</h2>
+					<span class="position"><a href="#" style="color: #0ea5e9;">GitHub Repo 🔗</a></span>
+					<p class="mt-4">Creating impactful visualizations, calculated fields, and interactive stories to communicate data insights effectively.</p>
 				</div>
 			</div>
 		</div>
 
     		<div class="row justify-content-center mt-5">
     			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="https://drive.google.com/file/d/1Yv3GhLg3StijMmZciMRYKCDp3ayBmGk9/view?usp=drive_link" target="_blank" class="btn btn-primary py-4 px-5">Download CV</a></p>
+    				<p><a href="https://drive.google.com/drive/folders/1zvPjKYe6NGkAfUoA0rY3x1eYB1EE5U7U" target="_blank" class="btn btn-primary py-4 px-5">Download CV</a></p>
     			</div>
     		</div>
     	</div>
@@ -591,239 +786,134 @@
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below is a collection of my software development projects, grouped by complexity.</p>
+            <h1 class="big big-2">Intel</h1>
+            <h2 class="mb-4">> Intelligence Briefs_</h2>
+            <p>Classified overview of deployed architectures, analytical models, and ETL frameworks, grouped by system complexity.</p>
           </div>
         </div>
         
         <div class="row d-flex">
-          <!-- Card 1: Aether AI -->
+          <!-- Card 1: Real-Time IoT Data Pipeline -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://aether-ai-rosy.vercel.app/" target="_blank" class="block-20 zoom-effect" style="background-image: url('assets/images/aether_mockup.png');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://aether-ai-rosy.vercel.app/" target="_blank">Aether AI — AI-Powered Chat Platform</a></h3>
-                <p>Full-stack AI chat platform featuring real-time LLM response streaming (SSE), voice input (Whisper), Supabase/PostgreSQL session storage, and Redis caching. Deployed with CI/CD on Vercel and Render.</p>
+                <h3 class="heading"><a href="#">Real-Time IoT Data Pipeline & Analytics</a></h3>
+                <p><strong>Problem:</strong> High latency in processing sensor data.<br>
+                <strong>Solution:</strong> Built an end-to-end pipeline using Kafka, Spark Streaming, and PostgreSQL.<br>
+                <strong>Impact:</strong> Ingested 1M+ data points/hour with sub-second latency.</p>
                 <p>
-                  <a href="https://aether-ai-rosy.vercel.app/" target="_blank" class="btn btn-primary py-2 px-3 mt-2" style="font-size: 11px; font-weight: 500; letter-spacing: 1px;">Live Link 🔗</a>
-                  <a href="#" class="btn btn-white btn-outline-white py-2 px-3 mt-2" data-toggle="modal" data-target="#aetherDemoModal" style="font-size: 11px; font-weight: 500; letter-spacing: 1px; margin-left: 5px;">Watch Demo 🎥</a>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: Apache Kafka, Apache Spark, Python, PostgreSQL</span>
                 </p>
               </div>
             </div>
           </div>
-          <!-- Card 2: E-Commerce Storefront -->
+          <!-- Card 2: E-Commerce Sales Data Warehouse -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317" class="block-20 zoom-effect" style="background-image: url('assets/images/ecom_mockup.png');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('assets/images/ecom_mockup.png');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317">E-Commerce Storefront</a></h3>
-                <p>A responsive e-commerce storefront utilizing category-based filtering from the FakeStore API. Implemented debounced search, category filtering, and localStorage cart persistence to optimize API calls.</p>
+                <h3 class="heading"><a href="#">E-Commerce Sales Data Warehouse</a></h3>
+                <p><strong>Problem:</strong> Fragmented sales reporting across systems.<br>
+                <strong>Solution:</strong> Designed a star schema data warehouse and ETL pipelines using Python and SQL.<br>
+                <strong>Impact:</strong> Reduced reporting time by 75% and enabled executive BI dashboards.</p>
+                <p>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: PostgreSQL, Power BI, Python, dbt</span>
+                </p>
               </div>
             </div>
           </div>
-          <!-- Card 3: Movie Recommender -->
+          <!-- Card 3: Movie Recommendation System -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Movie-Recommendation-System" class="block-20 zoom-effect" style="background-image: url('https://raw.githubusercontent.com/2000pawan/Content_Based_Movie_Recommendation_System/main/img.jpg');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('https://raw.githubusercontent.com/2000pawan/Content_Based_Movie_Recommendation_System/main/img.jpg');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Movie-Recommendation-System">Movie Recommender System</a></h3>
-                <p>A content-based movie recommendation system built with Python, Streamlit, and Scikit-Learn. Computes cosine similarity of vectorized metadata tags (genres, cast, crew) to suggest movies via a dynamic UI.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="row d-flex">
-          <!-- Card 4: Bangalore House -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Bangalore-House-Price-Prediction" class="block-20 zoom-effect" style="background-image: url('assets/images/house_price_mockup.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Bangalore-House-Price-Prediction">Bangalore House Price Prediction</a></h3>
-                <p>A supervised machine learning model that predicts housing prices in Bangalore. Built using Python (Scikit-Learn, Pandas, Numpy) for analysis, and deployed via a Flask web application with a responsive HTML/CSS/JS frontend.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 5: RecipeHub -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/ravi7317-PEP-VS-RecipeProject-Part1" class="block-20 zoom-effect" style="background-image: url('assets/images/recipe_api_mockup.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/ravi7317-PEP-VS-RecipeProject-Part1">RecipeHub (Back-End)</a></h3>
-                <p>A Java-based REST API backend designed to manage recipes, chefs, and ingredients using OOP and JDBC. Implements pagination, layered architecture (Controller, Service, DAO), and role-based access control.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 6: Spring Social Media -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/ravi7317-PEP-SpringSocialMediaBlogAPI-Project" class="block-20 zoom-effect" style="background-image: url('assets/images/blog_api_mockup.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/ravi7317-PEP-SpringSocialMediaBlogAPI-Project">Spring Social Media Blog API</a></h3>
-                <p>A Java-based REST API backend for a micro-blogging app leveraging Spring Boot, Spring MVC, and Spring Data JPA. Manages user registration, secure login, message CRUD operations, and message feed retrieval.</p>
+                <h3 class="heading"><a href="#">Movie Recommendation System with Big Data</a></h3>
+                <p><strong>Problem:</strong> Poor content discovery for users.<br>
+                <strong>Solution:</strong> Built a collaborative filtering engine using Spark MLlib processing 10,000+ movies.<br>
+                <strong>Impact:</strong> Increased user engagement via highly relevant recommendations.</p>
+                <p>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: Apache Spark, Scikit-Learn, Pandas, Python</span>
+                </p>
               </div>
             </div>
           </div>
         </div>
         <br>
         <div class="row d-flex">
-          <!-- Card 7: React Real-Time Dashboard -->
+          <!-- Card 4: Bangalore House Price Prediction -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/React-RealTime_Dashboard" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('assets/images/house_price_mockup.png');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/React-RealTime_Dashboard">React Real-Time Dashboard</a></h3>
-                <p>A high-performance React dashboard presenting real-time telemetry metrics using WebSockets, dynamic charts, and visual monitoring alerts for remote device state feedback.</p>
+                <h3 class="heading"><a href="#">Bangalore House Price Prediction & Analysis</a></h3>
+                <p>Developed an ML model predicting housing prices with 85% accuracy. Performed exploratory data analysis and feature engineering, creating an interactive web dashboard for price visualization.</p>
+                <p>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: Python, Scikit-Learn, Pandas, NumPy, Flask, Plotly</span>
+                </p>
               </div>
             </div>
           </div>
-          <!-- Card 8: Pizza Sales -->
+          <!-- Card 5: Coffee Shop Sales Analytics -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Pizza-Sales-Dashboard-" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('assets/images/proj_3_powerbi.png');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Pizza-Sales-Dashboard-">Pizza Sales Dashboard</a></h3>
-                <p>An interactive, data-driven Excel sales dashboard analyzing revenue, order values, volume, and customer trends. Features advanced monthly slicers, conditional formatting, and KPI trend charts.</p>
+                <h3 class="heading"><a href="#">Coffee Shop Sales Analytics</a></h3>
+                <p>Analyzed 100,000+ transaction records using SQL and Python. Built an interactive Excel dashboard with slicers and pivot tables identifying peak hours, top products, and revenue patterns.</p>
+                <p>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: Excel (Advanced), Power Query, VBA, SQL</span>
+                </p>
               </div>
             </div>
           </div>
-          <!-- Card 9: Coffee Shop -->
+          <!-- Card 6: Pizza Sales Performance Dashboard -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Coffee-Shop-Sales-Dashboard" class="block-20 zoom-effect" style="background-image: url('assets/images/proj_3_powerbi.png');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Coffee-Shop-Sales-Dashboard">Coffee Shop Sales Dashboard</a></h3>
-                <p>An interactive sales dashboard analyzing transaction quantities per hour, categories distribution, location footfalls, and size distribution. Features advanced custom slicers for day and month-level insights.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <br>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 4rem 0;">
-        <br>
-
-        <!-- Subsection 2: JavaScript & Frontend Projects -->
-        <div class="row justify-content-center mb-4">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h3 class="mb-3" style="color: #ffbd39; font-weight: 600; letter-spacing: 1px;">💻 JavaScript &amp; Frontend Projects</h3>
-            <p style="font-size: 16px; color: #999999;">Interactive frontend utility applications and web interfaces built using HTML, CSS, and modern JavaScript.</p>
-          </div>
-        </div>
-
-        <div class="row d-flex">
-          <!-- Card 1: Weather App -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Weather-App" class="block-20 zoom-effect" style="background-image: url('assets/images/weather_app_mockup.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Weather-App">Weather Application</a></h3>
-                <p>A responsive weather application fetching current weather metrics (temperature, humidity, wind speed) based on user city inputs via the OpenWeatherMap API with a clean custom JavaScript UI.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 2: Google Gemini Clone -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Google-Gemini-Clone" class="block-20 zoom-effect" style="background-image: url('assets/images/gemini_clone_mockup.svg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Google-Gemini-Clone">Google Gemini Clone</a></h3>
-                <p>A frontend clone of Google Gemini built using React and Tailwind CSS, featuring elegant chat histories, responsive panel sidebars, and custom AI chat dialog rendering.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 3: Age Calculator -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Age-Calculator" class="block-20 zoom-effect" style="background-image: url('assets/images/age_calc_mockup.svg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Age-Calculator">Age Calculator</a></h3>
-                <p>A smart JavaScript application that dynamically calculates precise chronological age (years, months, days) based on a selected birthdate using custom calendar logic.</p>
+                <h3 class="heading"><a href="#">Pizza Sales Performance Dashboard</a></h3>
+                <p>Created a comprehensive KPI dashboard for business intelligence analyzing revenue trends, order patterns, and customer behavior with advanced conditional formatting and dynamic charts.</p>
+                <p>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: Excel, Power BI, DAX</span>
+                </p>
               </div>
             </div>
           </div>
         </div>
         <br>
         <div class="row d-flex">
-          <!-- Card 4: E-Commerce JS Website -->
+          <!-- Card 7: Twitter Sentiment Analysis Pipeline -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/E-COMERCE-WEBSITE" class="block-20 zoom-effect" style="background-image: url('assets/images/ecom_js_mockup.svg');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('assets/images/weather_app_mockup.png');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/E-COMERCE-WEBSITE">E-Commerce JS Website</a></h3>
-                <p>An interactive, vanilla JavaScript shopping interface featuring product grids, search filtering, cart additions, count calculations, and dynamic pricing updates.</p>
+                <h3 class="heading"><a href="#">Twitter Sentiment Analysis Pipeline</a></h3>
+                <p>Built a real-time sentiment analysis pipeline using Twitter API, implementing text preprocessing and NLP models. Visualized sentiment trends with time-series analytics.</p>
+                <p>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: Python, NLTK, Tweepy, Spark, Elasticsearch, Kibana</span>
+                </p>
               </div>
             </div>
           </div>
-          <!-- Card 5: Login Page -->
+          <!-- Card 8: Data Quality Framework -->
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Login-page" class="block-20 zoom-effect" style="background-image: url('assets/images/login_page_mockup.svg');">
+              <a href="#" class="block-20 zoom-effect" style="background-image: url('assets/images/gemini_clone_mockup.svg');">
               </a>
               <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Login-page">Interactive Login Page</a></h3>
-                <p>A modern user authentication frontend featuring responsive CSS layout, field validation, password visibility toggles, and customized user error alerts.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 6: Password Generator -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Password-Gererator" class="block-20 zoom-effect" style="background-image: url('assets/images/pass_gen_mockup.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Password-Gererator">Password Generator</a></h3>
-                <p>A secure password generation utility allowing customized lengths, toggling uppercase/lowercase letters, numerals, and special characters, with copy-to-clipboard functionality.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="row d-flex">
-          <!-- Card 7: Quiz App -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quizz-app" class="block-20 zoom-effect" style="background-image: url('assets/images/quiz_app_mockup.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quizz-app">Quiz Application</a></h3>
-                <p>An interactive trivia application with timers, score tallies, immediate answer feedback, customizable categories, and responsive question card transitions.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 8: Quote Creator -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quote-Creator" class="block-20 zoom-effect" style="background-image: url('assets/images/quote_creator_mockup.svg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/Quote-Creator">Dynamic Quote Creator</a></h3>
-                <p>A dynamic web page that generates random quotes, styled in an elegant responsive quote card format with features to post directly to social media portals.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 9: To-Do List -->
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/To-Do%20list" class="block-20 zoom-effect" style="background-image: url('assets/images/todo_list_mockup.svg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://github.com/ravi7317/Frontend-Development-Course/tree/main/FRONTEND%20PROJECT/JavaScript-Project/To-Do%20list">Interactive To-Do List</a></h3>
-                <p>A custom task management dashboard featuring task creation, task state completion toggling, task deletion, and browser storage persistence for offline use.</p>
+                <h3 class="heading"><a href="#">Data Quality Framework</a></h3>
+                <p>Designed an automated data quality monitoring system implementing data validation rules, anomaly detection, and alerting. Created data lineage and quality score dashboards.</p>
+                <p>
+                  <span style="font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #0ea5e9;">Tech: Python, Great Expectations, Airflow, PostgreSQL</span>
+                </p>
               </div>
             </div>
           </div>
@@ -837,16 +927,16 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="50">0</strong><span>+</span>
-                <span>LeetCode Solved (DSA)</span>
+                <strong class="number" data-number="10">0</strong><span>+</span>
+                <span>Data Engineering Projects</span>
               </div>
             </div>
           </div>
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="18">0</strong> <span>+</span>
-                <span>Full-Stack, Backend &amp; Frontend Projects</span>
+                <strong class="number" data-number="15">0</strong> <span>+</span>
+                <span>Data Analytics &amp; Engineering Projects</span>
               </div>
             </div>
           </div>
@@ -890,9 +980,9 @@
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
+            <h1 class="big big-2">Comm</h1>
+            <h2 class="mb-4">> Secure Comm Channel_</h2>
+            <p>Establish a secure connection using the endpoints provided below.</p>
           </div>
         </div>
 
@@ -930,7 +1020,7 @@
           			<span class="icon-globe"></span>
           		</div>
           		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="https://drive.google.com/file/d/1Yv3GhLg3StijMmZciMRYKCDp3ayBmGk9/view?usp=drive_link" target="_blank">Resume Link</a></p>
+	            <p><a href="https://drive.google.com/drive/folders/1zvPjKYe6NGkAfUoA0rY3x1eYB1EE5U7U" target="_blank">Resume Link</a></p>
 	          </div>
           </div>
 		  <div class="container">
@@ -938,7 +1028,8 @@
 			<br>
 			<div class="row justify-content-center">
 				<div class="col-md-7 ftco-animate text-center">
-					<h2>Have a<span> Question?  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfM5ReWQoqi-v37nR4Jh0W5pKwUVZXtZ6yem3vKIIe3iovkBw/viewform?usp=sf_link" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
+					<h2>Let's transform your <span>data into insights</span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfM5ReWQoqi-v37nR4Jh0W5pKwUVZXtZ6yem3vKIIe3iovkBw/viewform?usp=sf_link" class="btn btn-primary py-3 px-5">Contact Me</a> </h2>
+					<p class="mt-3">Available for data projects and analytics consulting.</p>
 				</div>
 			</div>
 				<br>
@@ -974,9 +1065,9 @@
   <!-- Aether AI Demo Modal -->
   <div class="modal fade" id="aetherDemoModal" tabindex="-1" role="dialog" aria-labelledby="aetherDemoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content" style="background: #1c1c1c; border: 1px solid #ffbd39; border-radius: 8px; box-shadow: 0 0 20px rgba(255, 189, 57, 0.2);">
+      <div class="modal-content" style="background: #1c1c1c; border: 1px solid #0ea5e9; border-radius: 8px; box-shadow: 0 0 20px rgba(255, 189, 57, 0.2);">
         <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 15px 20px;">
-          <h5 class="modal-title" id="aetherDemoModalLabel" style="color: #ffbd39; font-weight: 600; font-size: 18px; letter-spacing: 1px;">Aether AI — Demo Video 🎥</h5>
+          <h5 class="modal-title" id="aetherDemoModalLabel" style="color: #0ea5e9; font-weight: 600; font-size: 18px; letter-spacing: 1px;">Aether AI — Demo Video 🎥</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 0.8; outline: none;">
             <span aria-hidden="true" style="font-size: 28px; line-height: 1;">&times;</span>
           </button>
@@ -1015,9 +1106,9 @@
 
     // Create an array of typing text
     const typingTexts = [
-      'Full-Stack Software Engineer  ',
-      'React.js & Python Developer  ',
-      'FastAPI & Kafka Engineer  ',
+      'Data Analyst  ',
+      'Data Engineer  ',
+      'BI Developer  ',
     ];
 
     // Create a function to display the typing animation for a given text
@@ -1055,6 +1146,284 @@
       $iframe.attr('src', '');
       $iframe.attr('src', tempSrc);
     });
+
+    // ==========================================
+    // 3D BACKGROUND & PARTICLE LOGIC
+    // ==========================================
+    if(typeof particlesJS !== 'undefined') {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#00d4ff", "#7b2ffc"] },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00d4ff",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    }
+
+    if(typeof THREE !== 'undefined') {
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x0a0e27, 0.05);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 12;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+        scene.add(ambientLight);
+        
+        const pointLight = new THREE.PointLight(0x00d4ff, 2);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        const pointLight2 = new THREE.PointLight(0x7b2ffc, 2);
+        pointLight2.position.set(-10, -10, 10);
+        scene.add(pointLight2);
+
+        const globeGroup = new THREE.Group();
+        scene.add(globeGroup);
+
+        const sphereGeo = new THREE.IcosahedronGeometry(6, 2);
+        const sphereMat = new THREE.MeshPhongMaterial({
+            color: 0x00d4ff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const globe = new THREE.Mesh(sphereGeo, sphereMat);
+        globeGroup.add(globe);
+
+        const solidSphereGeo = new THREE.IcosahedronGeometry(5.8, 2);
+        const solidSphereMat = new THREE.MeshPhongMaterial({
+            color: 0x0a0e27,
+            transparent: true,
+            opacity: 0.9
+        });
+        const solidGlobe = new THREE.Mesh(solidSphereGeo, solidSphereMat);
+        globeGroup.add(solidGlobe);
+
+        const nodeGeo = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+        const nodeMat = new THREE.MeshBasicMaterial({ color: 0x00d4ff });
+        const nodes = [];
+
+        for (let i = 0; i < 50; i++) {
+            const mesh = new THREE.Mesh(nodeGeo, nodeMat);
+            const phi = Math.acos(-1 + (2 * i) / 50);
+            const theta = Math.sqrt(50 * Math.PI) * phi;
+            const r = 6.2;
+            mesh.position.x = r * Math.cos(theta) * Math.sin(phi);
+            mesh.position.y = r * Math.sin(theta) * Math.sin(phi);
+            mesh.position.z = r * Math.cos(phi);
+            mesh.lookAt(0, 0, 0);
+            globeGroup.add(mesh);
+            nodes.push({
+                mesh: mesh,
+                originalY: mesh.position.y,
+                offset: Math.random() * Math.PI * 2
+            });
+        }
+
+        // --- NETWORK ARCS & DATA PACKETS ---
+        const packets = [];
+        const packetGeo = new THREE.SphereGeometry(0.06, 8, 8);
+        const packetMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const lineMat = new THREE.LineBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.25 });
+
+        for(let i = 0; i < 30; i++) {
+            const idxA = Math.floor(Math.random() * nodes.length);
+            let idxB = Math.floor(Math.random() * nodes.length);
+            while(idxA === idxB) idxB = Math.floor(Math.random() * nodes.length); // ensure different nodes
+
+            const nodeA = nodes[idxA].mesh.position;
+            const nodeB = nodes[idxB].mesh.position;
+            
+            const distance = nodeA.distanceTo(nodeB);
+            
+            // Midpoint pushed outward
+            const midPoint = new THREE.Vector3().addVectors(nodeA, nodeB).multiplyScalar(0.5);
+            midPoint.normalize().multiplyScalar(6.2 + distance * 0.35);
+
+            // Curve
+            const curve = new THREE.QuadraticBezierCurve3(nodeA, midPoint, nodeB);
+            const points = curve.getPoints(20);
+            const curveGeo = new THREE.BufferGeometry().setFromPoints(points);
+            const curveLine = new THREE.Line(curveGeo, lineMat);
+            
+            globeGroup.add(curveLine);
+
+            // Packet
+            const packet = new THREE.Mesh(packetGeo, packetMat.clone());
+            globeGroup.add(packet);
+            
+            packets.push({
+                mesh: packet,
+                curve: curve,
+                progress: Math.random(),
+                speed: 0.003 + Math.random() * 0.006
+            });
+        }
+
+        // --- NEW DATA ELEMENTS ---
+        // 1. Cyber Grid Floor
+        const gridHelper = new THREE.GridHelper(200, 100, 0x00d4ff, 0x004488);
+        gridHelper.position.y = -8;
+        gridHelper.material.opacity = 0.08; /* Dimmed for better text visibility */
+        gridHelper.material.transparent = true;
+        scene.add(gridHelper);
+
+        // 2. Orbital Data Rings
+        const ringGeo1 = new THREE.TorusGeometry(8, 0.02, 16, 100);
+        const ringMat1 = new THREE.MeshBasicMaterial({ color: 0x7b2ffc, transparent: true, opacity: 0.4 });
+        const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
+        ring1.rotation.x = Math.PI / 2;
+        scene.add(ring1);
+
+        const ringGeo2 = new THREE.TorusGeometry(9.5, 0.015, 16, 100);
+        const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.3 });
+        const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
+        ring2.rotation.y = Math.PI / 3;
+        scene.add(ring2);
+
+        // 3. Dynamic 3D Bar Charts
+        const bars = [];
+        const barGeo = new THREE.BoxGeometry(0.8, 1, 0.8);
+        barGeo.translate(0, 0.5, 0); // Origin at bottom
+        const barMat = new THREE.MeshPhongMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.5 });
+
+        for(let i=0; i<40; i++) {
+            const bar = new THREE.Mesh(barGeo, barMat);
+            bar.position.x = (Math.random() - 0.5) * 60;
+            bar.position.z = -15 - Math.random() * 30; // Deep in background
+            bar.position.y = -8; // Rest on grid
+            
+            scene.add(bar);
+            bars.push({ 
+                mesh: bar, 
+                maxScale: 2 + Math.random() * 12, 
+                speed: 0.5 + Math.random() * 1.5, 
+                offset: Math.random() * Math.PI * 2 
+            });
+        }
+
+        // 4. Data Rain
+        const rainGeo = new THREE.BufferGeometry();
+        const rainCount = 1500;
+        const rainPositions = new Float32Array(rainCount * 3);
+        for(let i=0; i<rainCount*3; i+=3) {
+            rainPositions[i] = (Math.random() - 0.5) * 120;
+            rainPositions[i+1] = Math.random() * 100 - 50;
+            rainPositions[i+2] = (Math.random() - 0.5) * 60 - 10;
+        }
+        rainGeo.setAttribute('position', new THREE.BufferAttribute(rainPositions, 3));
+        const rainMat = new THREE.PointsMaterial({ color: 0x00d4ff, size: 0.1, transparent: true, opacity: 0.25 }); /* Dimmed data rain */
+        const dataRain = new THREE.Points(rainGeo, rainMat);
+        scene.add(dataRain);
+
+
+        let mouseX = 0;
+        let mouseY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - windowHalfX);
+            mouseY = (event.clientY - windowHalfY);
+        });
+
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+            const targetX = mouseX * 0.001;
+            const targetY = mouseY * 0.001;
+            globeGroup.rotation.y += 0.002; 
+            globeGroup.rotation.x += 0.05 * (targetY - globeGroup.rotation.x);
+            globeGroup.rotation.y += 0.05 * (targetX - globeGroup.rotation.y);
+
+            nodes.forEach(node => {
+                const scale = 1 + Math.sin(time * 3 + node.offset) * 0.5;
+                node.mesh.scale.set(scale, scale, scale);
+                node.mesh.material.color.setHSL((time * 0.1 + node.offset) % 1, 1, 0.6);
+            });
+
+            // Animate Data Packets along Arcs
+            packets.forEach(packet => {
+                packet.progress += packet.speed;
+                if(packet.progress >= 1) {
+                    packet.progress = 0;
+                    packet.mesh.material.color.setHSL(Math.random(), 1, 0.7); // flash random bright color
+                }
+                const point = packet.curve.getPoint(packet.progress);
+                packet.mesh.position.copy(point);
+            });
+
+            // Animate Data Rings
+            ring1.rotation.y += 0.002;
+            ring1.rotation.x += 0.001;
+            ring2.rotation.x -= 0.0015;
+            ring2.rotation.z -= 0.002;
+
+            // Animate Bar Charts
+            bars.forEach(bar => {
+                const s = (Math.sin(time * bar.speed + bar.offset) + 1) / 2; // 0 to 1
+                bar.mesh.scale.y = 0.1 + s * bar.maxScale;
+                bar.mesh.material.color.setHSL((time * 0.05 + bar.offset) % 1, 1, 0.4);
+            });
+
+            // Animate Data Rain
+            const positions = dataRain.geometry.attributes.position.array;
+            for(let i=1; i<rainCount*3; i+=3) {
+                positions[i] -= 0.15; // fall speed
+                if(positions[i] < -30) {
+                    positions[i] = 50; // reset to top
+                }
+            }
+            dataRain.geometry.attributes.position.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    }
+
   </script>
     
   </body>

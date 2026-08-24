@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi Verma | 3D Data Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #0a0e27;
+            --primary: #00d4ff;
+            --secondary: #7b2ffc;
+            --text-main: #ffffff;
+            --text-muted: #b0b8c8;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* 3D Backgrounds */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none; /* Let clicks pass through */
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* UI Overlay */
+        #ui-overlay {
+            position: relative;
+            z-index: 10;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Hero */
+        .hero-content {
+            text-align: center;
+        }
+
+        .glitch-text {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0;
+        }
+
+        .typing-text {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .floating-tags {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .floating-tags span {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .floating-tags span:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(123, 47, 252, 0.5);
+            border-color: rgba(123, 47, 252, 0.5);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(10, 14, 39, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(123, 47, 252, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* GSAP Initial States */
+        .gsap-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 3D Three.js Container -->
+    <div id="canvas-container"></div>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Main Content -->
+    <div id="ui-overlay">
+        
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container hero-content gsap-reveal">
+                <h1 class="glitch-text">Ravi Verma</h1>
+                <h2 class="typing-text">Data Analyst & Data Engineer</h2>
+                <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                    Architecting scalable data pipelines, optimizing real-time processing, and designing immersive business intelligence insights.
+                </p>
+                <div class="floating-tags">
+                    <span>⚡ Real-time Pipelines</span>
+                    <span>📊 BI & Analytics</span>
+                    <span>🧠 Predictive Modeling</span>
+                    <span>☁️ Cloud Data Warehousing</span>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <a href="#projects" class="btn btn-primary">View Data Projects</a>
+                    <a href="https://drive.google.com/drive/folders/1zvPjKYe6NGkAfUoA0rY3x1eYB1EE5U7U" target="_blank" class="btn btn-primary" style="background: transparent; border: 1px solid var(--primary);">Download CV</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container gsap-reveal">
+                <h2 style="font-size: 3rem; text-align: center; color: var(--primary);">Data Stack Command Center</h2>
+                <div class="glass-card" style="margin-top: 2rem; text-align: center;">
+                    <p style="font-size: 1.2rem; line-height: 1.8;">
+                        I am a Data Engineer and Analyst focused on transforming raw, chaotic data into structured, high-value assets. 
+                        My stack includes Apache Kafka, Spark, Airflow, dbt, Snowflake, and Power BI. 
+                        I thrive in complex ETL environments and love building robust data architectures.
+                    </p>
+                    <div style="display: flex; justify-content: space-around; margin-top: 3rem; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 2.5rem; color: var(--secondary); margin:0;">15+</h3>
+                            <p>Data Projects</p>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 2.5rem; color: var(--secondary); margin:0;">10+ TB</h3>
+                            <p>Data Processed</p>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 2.5rem; color: var(--secondary); margin:0;">5+</h3>
+                            <p>Databases Mastered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container gsap-reveal">
+                <h2 style="font-size: 3rem; text-align: center; color: var(--primary);">Featured Data Operations</h2>
+                <div class="projects-grid mt-4">
+                    <div class="glass-card">
+                        <h3>Real-Time IoT Pipeline</h3>
+                        <p style="color: var(--primary); font-size: 0.9rem;">Kafka, Spark Streaming, PostgreSQL</p>
+                        <p>Ingested 1M+ sensor data points per hour with sub-second latency and automated anomaly detection.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3>E-Commerce Data Warehouse</h3>
+                        <p style="color: var(--primary); font-size: 0.9rem;">Python, dbt, Power BI, Snowflake</p>
+                        <p>Designed a star schema dimensional model to reduce reporting times by 75% for executive dashboards.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Big Data Recommendation Engine</h3>
+                        <p style="color: var(--primary); font-size: 0.9rem;">Apache Spark, Scikit-Learn, Pandas</p>
+                        <p>Built a collaborative filtering engine processing 10,000+ items to increase user engagement metrics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // 1. PARTICLES.JS INITIALIZATION (Data Streams)
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#00d4ff", "#7b2ffc"] },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00d4ff",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // 2. THREE.JS 3D GLOBE & NODES
+        const scene = new THREE.Scene();
+        // Add a subtle fog to blend the globe into the dark background
+        scene.fog = new THREE.FogExp2(0x0a0e27, 0.05);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 12;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+        scene.add(ambientLight);
+        
+        const pointLight = new THREE.PointLight(0x00d4ff, 2);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        const pointLight2 = new THREE.PointLight(0x7b2ffc, 2);
+        pointLight2.position.set(-10, -10, 10);
+        scene.add(pointLight2);
+
+        // Core Globe Wireframe
+        const globeGroup = new THREE.Group();
+        scene.add(globeGroup);
+
+        const sphereGeo = new THREE.SphereGeometry(6, 32, 32);
+        const sphereMat = new THREE.MeshPhongMaterial({
+            color: 0x00d4ff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const globe = new THREE.Mesh(sphereGeo, sphereMat);
+        globeGroup.add(globe);
+
+        // Inner solid dark globe to hide back-facing lines a bit
+        const solidSphereGeo = new THREE.SphereGeometry(5.8, 32, 32);
+        const solidSphereMat = new THREE.MeshPhongMaterial({
+            color: 0x0a0e27,
+            transparent: true,
+            opacity: 0.9
+        });
+        const solidGlobe = new THREE.Mesh(solidSphereGeo, solidSphereMat);
+        globeGroup.add(solidGlobe);
+
+        // Data Nodes (Floating cubes representing data centers)
+        const nodeGeo = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+        const nodeMat = new THREE.MeshBasicMaterial({ color: 0x00d4ff });
+        const nodes = [];
+
+        for (let i = 0; i < 50; i++) {
+            const mesh = new THREE.Mesh(nodeGeo, nodeMat);
+            
+            // Random spherical coordinates
+            const phi = Math.acos(-1 + (2 * i) / 50);
+            const theta = Math.sqrt(50 * Math.PI) * phi;
+            
+            // Convert to Cartesian (Radius = 6.2, slightly outside globe)
+            const r = 6.2;
+            mesh.position.x = r * Math.cos(theta) * Math.sin(phi);
+            mesh.position.y = r * Math.sin(theta) * Math.sin(phi);
+            mesh.position.z = r * Math.cos(phi);
+            
+            // Look at center
+            mesh.lookAt(0, 0, 0);
+            
+            globeGroup.add(mesh);
+            nodes.push({
+                mesh: mesh,
+                originalY: mesh.position.y,
+                offset: Math.random() * Math.PI * 2
+            });
+        }
+
+        // Mouse Interaction for Parallax
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - windowHalfX);
+            mouseY = (event.clientY - windowHalfY);
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            // Parallax mouse effect
+            targetX = mouseX * 0.001;
+            targetY = mouseY * 0.001;
+            globeGroup.rotation.y += 0.002; 
+            globeGroup.rotation.x += 0.05 * (targetY - globeGroup.rotation.x);
+            globeGroup.rotation.y += 0.05 * (targetX - globeGroup.rotation.y);
+
+            // Animate Data Nodes (Pulsing)
+            nodes.forEach(node => {
+                const scale = 1 + Math.sin(time * 3 + node.offset) * 0.5;
+                node.mesh.scale.set(scale, scale, scale);
+                // Pulse color between cyan and purple
+                node.mesh.material.color.setHSL((time * 0.1 + node.offset) % 1, 1, 0.6);
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 3. GSAP SCROLL ANIMATIONS
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal animations for sections
+        const revealElements = document.querySelectorAll(".gsap-reveal");
+        revealElements.forEach((elem) => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 80%", // Reveal when element is 80% down viewport
+                    toggleActions: "play none none reverse"
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Move 3D Globe based on scroll
+        gsap.to(globeGroup.position, {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1
+            },
+            y: 5, // Moves globe up slightly as you scroll down
+            z: -5  // Pushes it back
+        });
+
+    </script>
+</body>
+</html>
